@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#0d0f10">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Masraf">
+<title>Masraf Asistanı</title>
+<link rel="manifest" href="manifest.json">
+<script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+<style>
+:root{--bg:#0d0f10;--card:#17191b;--field:#101214;--green:#18c99a;--white:#f5f6f4;--muted:#9a9ca2;--line:#2b2e31;--amber:#f4be7c}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{background:var(--bg);color-scheme:dark}
+body{margin:0;min-height:100dvh;overflow-x:hidden;background:radial-gradient(circle at 0 0,rgba(12,112,82,.18),transparent 25rem),var(--bg);color:var(--white);font-family:Manrope,sans-serif;padding-bottom:calc(28px + env(safe-area-inset-bottom))}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+.hidden{display:none!important}
+.flex{display:flex!important}
+.app{width:100%;max-width:480px;margin:0 auto;padding:0 16px}
+.topbar{position:sticky;top:0;z-index:40;margin:0 -16px;padding:calc(12px + env(safe-area-inset-top)) 16px 12px;background:rgba(13,15,16,.9);border-bottom:1px solid rgba(255,255,255,.05);backdrop-filter:blur(18px)}
+.topbar-inner{display:flex;align-items:center;justify-content:space-between;max-width:448px;margin:0 auto}
+.brand{display:flex;align-items:center;gap:11px}
+.brand-mark{width:40px;height:40px;display:grid;place-items:center;flex-shrink:0;border:1px solid rgba(24,201,154,.55);border-radius:50%;background:rgba(24,201,154,.07);color:var(--green);font-size:13px;font-weight:800}
+.brand h1{margin:0;font-size:16px;line-height:1.2}
+.brand p{margin:3px 0 0;color:var(--muted);font-size:9px;font-weight:600;letter-spacing:.14em}
+.settings{width:40px;height:40px;display:grid;place-items:center;flex-shrink:0;border:1px solid var(--line);border-radius:50%;background:var(--card);color:#c8c9cc}
+.settings:active{transform:scale(.94);color:var(--green);border-color:rgba(24,201,154,.5)}
+.intro{padding:27px 0 20px}
+.kicker{margin:0 0 8px;color:var(--green);font-size:10px;font-weight:800;letter-spacing:.18em}
+.form-stack{display:flex;flex-direction:column;gap:14px}
+.card{width:100%;padding:19px 16px;border:1px solid var(--line);border-radius:20px;background:linear-gradient(145deg,rgba(25,27,29,.98),rgba(20,22,24,.98));box-shadow:0 18px 42px rgba(0,0,0,.17)}
+.card.accent{border-color:rgba(24,201,154,.5)}
+.card.amber{border-color:rgba(244,190,124,.4)}
+.card-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:17px}
+.card-title{display:flex;align-items:center;gap:10px}
+.card-icon{width:34px;height:34px;display:grid;place-items:center;flex-shrink:0;border:1px solid rgba(24,201,154,.28);border-radius:12px;background:rgba(24,201,154,.07);color:var(--green)}
+.card-icon.amber-icon{border-color:rgba(244,190,124,.28);background:rgba(244,190,124,.07);color:var(--amber)}
+.card-icon span{font-size:18px}
+.card h3{margin:0;font-size:15px}
+.step{padding:5px 8px;border:1px solid rgba(24,201,154,.24);border-radius:999px;color:var(--green);font-size:9px;font-weight:800;letter-spacing:.12em}
+.fields{display:flex;flex-direction:column;gap:14px}
+.field{position:relative;display:flex;flex-direction:column;gap:7px}
+.label-row{display:flex;align-items:center;justify-content:space-between;padding:0 2px}
+.field label{color:#aaaeb2;font-size:12px;font-weight:650}
+.input-wrap{position:relative}
+.input-icon{position:absolute;top:50%;left:14px;z-index:2;color:#668078;font-size:19px;pointer-events:none;transform:translateY(-50%)}
+.control{width:100%;min-height:52px;padding:13px 14px!important;border:1px solid #303337!important;border-radius:14px!important;outline:none!important;background:var(--field)!important;color:var(--white)!important;box-shadow:none!important}
+.control.icon{padding-left:43px!important}
+.control::placeholder{color:#5f6267}
+.control:focus{border-color:var(--green)!important;box-shadow:0 0 0 4px rgba(24,201,154,.08)!important}
+textarea.control{min-height:98px;resize:none}
+select.control{appearance:none;-webkit-appearance:none;cursor:pointer}
+.select-wrap{position:relative}
+.select-wrap::after{content:"expand_more";font-family:"Material Symbols Outlined";position:absolute;top:50%;right:14px;transform:translateY(-50%);color:#668078;font-size:20px;pointer-events:none}
+
+.tutar-wrap{position:relative}
+.tutar-suffix{position:absolute;top:50%;right:14px;transform:translateY(-50%);color:var(--green);font-size:13px;font-weight:800;pointer-events:none}
+#tutar{padding-right:44px!important}
+
+.submit{width:100%;min-height:56px;display:flex;align-items:center;justify-content:center;gap:9px;border:0;border-radius:16px;background:linear-gradient(110deg,#1ad09d,#10b986);color:#061510;font-size:14px;font-weight:800;box-shadow:0 14px 32px rgba(11,185,132,.2)}
+.submit:active{transform:scale(.985)}
+.submit:disabled{opacity:.65;cursor:wait}
+.footer{margin:19px 0 0;color:#55585c;font-size:9px;font-weight:700;text-align:center;letter-spacing:.14em}
+
+/* Özet kartı */
+.summary-card{display:flex;flex-direction:column;gap:8px}
+.summary-row{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.03)}
+.summary-row:nth-child(odd){background:rgba(255,255,255,.05)}
+.summary-label{font-size:12px;color:var(--muted);font-weight:600}
+.summary-val{font-size:13px;font-weight:800;color:var(--white)}
+.summary-val.nonzero{color:var(--green)}
+.summary-total{display:flex;align-items:center;justify-content:space-between;padding:13px 12px;border-top:1px solid var(--line);margin-top:4px}
+.summary-total .summary-label{font-size:13px;color:var(--white);font-weight:700}
+.summary-total .summary-val{font-size:16px;color:var(--green)}
+
+/* Settings modal */
+#settingsModal{position:fixed;inset:0;z-index:80;align-items:flex-end;justify-content:center;background:rgba(2,4,5,.78);backdrop-filter:blur(8px)}
+#settingsCard{width:100%;max-width:480px;padding:22px 18px calc(22px + env(safe-area-inset-bottom));border:1px solid rgba(24,201,154,.32);border-bottom:0;border-radius:24px 24px 0 0;background:#181a1b}
+#settingsCard h2{margin:0 0 8px}
+#settingsCard p{margin:0 0 16px;color:var(--muted)}
+.modal-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
+.cancel,.save{min-height:47px;border-radius:14px;font-weight:700}
+.cancel{border:1px solid var(--line);background:#111314;color:#a9abad}
+.save{border:0;background:var(--green);color:#07140f}
+
+/* Flash */
+#flashOverlay{position:fixed;inset:0;z-index:200;pointer-events:none;background:rgba(24,201,154,0);transition:background .15s ease}
+#flashOverlay.flash{background:rgba(24,201,154,.22)}
+
+#syncStatus{font-size:12px;line-height:1.6;margin:10px 0;color:#a9c5ba;overflow-wrap:anywhere}
+
+#tutar, #il {text-transform:uppercase}
+</style>
+</head>
+<body>
+
+<div id="flashOverlay"></div>
+
+<div class="app">
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <div class="brand-mark">SD</div>
+      <div>
+        <h1>Masraf Asistanı</h1>
+        <p>KİŞİSEL ÇALIŞMA ALANI</p>
+      </div>
+    </div>
+    <button id="openSettingsBtn" class="settings" type="button" aria-label="Ayarlar">
+      <span class="material-symbols-outlined">tune</span>
+    </button>
+  </div>
+</header>
+
+<main>
+  <section class="intro">
+    <p class="kicker">YENİ MASRAF</p>
+  </section>
+
+  <form id="masrafForm" class="form-stack">
+
+    <!-- KART 1: Temel Bilgiler -->
+    <section class="card accent">
+      <div class="card-head">
+        <div class="card-title">
+          <div class="card-icon"><span class="material-symbols-outlined">calendar_month</span></div>
+          <h3>Temel bilgiler</h3>
+        </div>
+        <span class="step">01</span>
+      </div>
+      <div class="fields">
+        <div class="field">
+          <label for="tarih">Tarih</label>
+          <div class="input-wrap">
+            <span class="material-symbols-outlined input-icon">calendar_month</span>
+            <input id="tarih" class="control icon" type="date">
+          </div>
+        </div>
+        <div class="field">
+          <label for="il">İl</label>
+          <div class="input-wrap">
+            <span class="material-symbols-outlined input-icon">location_on</span>
+            <input id="il" class="control icon" type="text" placeholder="Şehir yazın..." autocomplete="off">
+          </div>
+          <ul id="ilList"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- KART 2: Masraf Türü ve Tutar -->
+    <section class="card">
+      <div class="card-head">
+        <div class="card-title">
+          <div class="card-icon"><span class="material-symbols-outlined">receipt_long</span></div>
+          <h3>Masraf türü ve tutar</h3>
+        </div>
+        <span class="step">02</span>
+      </div>
+      <div class="fields">
+        <div class="field">
+          <label for="tur">Masraf Türü</label>
+          <div class="select-wrap">
+            <select id="tur" class="control">
+              <option value="">— Seçiniz —</option>
+              <option value="YEMEK (KENDİSİ)">Yemek (Kendisi)</option>
+              <option value="İKRAM (MÜŞTERİSİ)">İkram (Müşterisi)</option>
+              <option value="YOL-OTOPARK">Yol - Otopark</option>
+              <option value="YAKIT">Yakıt</option>
+              <option value="KONAKLAMA">Konaklama</option>
+              <option value="DİĞER">Diğer</option>
+              <option value="BELGESİZ HARCAMA">Belgesiz Harcama</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="tutar">Tutar</label>
+          <div class="tutar-wrap">
+            <input id="tutar" class="control" type="number" min="0" step="0.01" placeholder="0.00">
+            <span class="tutar-suffix">TL</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- KART 3: Açıklama -->
+    <section class="card">
+      <div class="card-head">
+        <div class="card-title">
+          <div class="card-icon amber-icon"><span class="material-symbols-outlined">edit_note</span></div>
+          <h3>Açıklama</h3>
+        </div>
+        <span class="step">03</span>
+      </div>
+      <div class="fields">
+        <div class="field">
+          <textarea id="aciklama" class="control" rows="3" placeholder="Masraf detayını buraya girin..."></textarea>
+        </div>
+      </div>
+    </section>
+
+    <!-- KART 4: Dönem Özeti -->
+    <section class="card amber">
+      <div class="card-head">
+        <div class="card-title">
+          <div class="card-icon amber-icon"><span class="material-symbols-outlined">bar_chart</span></div>
+          <h3>Dönem özeti</h3>
+        </div>
+        <button type="button" id="refreshBtn" style="background:transparent;border:0;color:var(--muted);display:flex;align-items:center;gap:4px;font-size:11px;font-weight:700;">
+          <span class="material-symbols-outlined" style="font-size:16px">refresh</span>YENILE
+        </button>
+      </div>
+      <div class="summary-card" id="summaryCard">
+        <div class="summary-row"><span class="summary-label">Yükleniyor…</span></div>
+      </div>
+    </section>
+
+    <button id="submitBtn" type="button" class="submit">
+      <span id="btnIcon" class="material-symbols-outlined">add_circle</span>
+      <span id="btnText">Masrafı Kaydet</span>
+      <svg id="btnSpinner" class="hidden animate-spin h-5 w-5" fill="none" viewBox="0 0 24 24">
+        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+      </svg>
+    </button>
+
+  </form>
+  <p class="footer">SEDAT DEMİR · MASRAF YÖNETİMİ</p>
+</main>
+</div>
+
+<!-- Settings Modal -->
+<div id="settingsModal" class="hidden flex-col">
+  <div id="settingsCard">
+    <h2>Ayarlar</h2>
+    <p>Google Apps Script bağlantısını buraya yapıştırın.</p>
+    <input type="text" id="scriptUrlInput" class="control" placeholder="https://script.google.com/macros/s/.../exec">
+    <div class="modal-actions">
+      <button type="button" id="closeSettingsBtn" class="cancel">İptal</button>
+      <button type="button" id="saveSettingsBtn" class="save">Kaydet</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(() => {
+  "use strict";
+
+  const $ = id => document.getElementById(id);
+  const flash = $("flashOverlay");
+
+  function showFlash() {
+    flash.classList.add("flash");
+    setTimeout(() => flash.classList.remove("flash"), 600);
+  }
+
+  const cities = (
+    "Adana|Adıyaman|Afyonkarahisar|Ağrı|Aksaray|Amasya|Ankara|Antalya|Artvin|Aydın|" +
+    "Balıkesir|Bartın|Batman|Bayburt|Bilecik|Bingöl|Bitlis|Bolu|Burdur|Bursa|" +
+    "Çanakkale|Çankırı|Çorum|Denizli|Diyarbakır|Düzce|Edirne|Elazığ|Erzincan|" +
+    "Erzurum|Eskişehir|Gaziantep|Giresun|Gümüşhane|Hakkari|Hatay|Iğdır|Isparta|" +
+    "İstanbul|İzmir|Kahramanmaraş|Karabük|Karaman|Kars|Kastamonu|Kayseri|Kırıkkale|" +
+    "Kırklareli|Kırşehir|Kilis|Kocaeli|Konya|Kütahya|Malatya|Manisa|Mardin|Mersin|" +
+    "Muğla|Muş|Nevşehir|Niğde|Ordu|Osmaniye|Rize|Sakarya|Samsun|Siirt|Sinop|Sivas|" +
+    "Şanlıurfa|Şırnak|Tekirdağ|Tokat|Trabzon|Tunceli|Uşak|Van|Yalova|Yozgat|Zonguldak"
+  ).split("|").sort((a,b) => a.localeCompare(b,"tr"));
+
+  const key = v => String(v).trim().toLocaleLowerCase("tr-TR").replace(/ı/g,"i").normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+  const upper = v => String(v).trim().toLocaleUpperCase("tr-TR");
+
+  let busy = false;
+  let endpoint = "";
+
+  const status = document.createElement("p");
+  status.id = "syncStatus";
+  status.setAttribute("role","status");
+  $("masrafForm").before(status);
+
+  function message(text, error=false) {
+    status.textContent = text;
+    status.style.color = error ? "#ff9e9e" : "#a9c5ba";
+  }
+
+  try { endpoint = localStorage.getItem("masrafScriptUrl") || ""; } catch(_) {}
+
+  // Şehir autocomplete
+  const ilInput = $("il");
+  const ilList = $("ilList");
+  ilList.style.cssText = "position:absolute;top:100%;left:0;right:0;z-index:55;max-height:220px;overflow:auto;padding:5px;margin:6px 0 0;list-style:none;background:#191c1d;border:1px solid #337a66;border-radius:14px;box-shadow:0 15px 35px #0008;display:none";
+
+  function renderCities() {
+    ilList.innerHTML = "";
+    const q = key(ilInput.value);
+    const matches = cities.filter(c => key(c).includes(q)).slice(0,20);
+    if (!matches.length) { ilList.style.display = "none"; return; }
+    matches.forEach(c => {
+      const li = document.createElement("li");
+      li.style.padding = "0";
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.textContent = c.toLocaleUpperCase("tr-TR");
+      btn.style.cssText = "display:block;width:100%;padding:13px;text-align:left;border:0;border-radius:9px;background:transparent;color:#eee;font:inherit;font-size:14px;cursor:pointer";
+      btn.addEventListener("mousedown", e => e.preventDefault());
+      btn.addEventListener("click", () => {
+        ilInput.value = c.toLocaleUpperCase("tr-TR");
+        ilList.style.display = "none";
+        try { localStorage.setItem("masrafLastIl", ilInput.value); } catch(_) {}
+      });
+      li.appendChild(btn);
+      ilList.appendChild(li);
+    });
+    ilList.style.display = "block";
+  }
+
+  ilInput.addEventListener("input", renderCities);
+  ilInput.addEventListener("focus", renderCities);
+  document.addEventListener("pointerdown", e => {
+    if (e.target !== ilInput && !ilList.contains(e.target)) ilList.style.display = "none";
+  });
+
+  // Son il'i geri yükle
+  try {
+    const lastIl = localStorage.getItem("masrafLastIl");
+    if (lastIl) ilInput.value = lastIl;
+  } catch(_) {}
+
+  // Bugünün tarihini set et
+  function setToday() {
+    const t = new Date();
+    $("tarih").value = t.getFullYear()+"-"+String(t.getMonth()+1).padStart(2,"0")+"-"+String(t.getDate()).padStart(2,"0");
+  }
+  setToday();
+
+  function lockForm() {
+    ["tarih","il","tur","tutar","aciklama"].forEach(id => { $(id).disabled = busy; });
+    $("submitBtn").disabled = busy;
+    $("btnText").textContent = busy ? "Kaydediliyor…" : "Masrafı Kaydet";
+    $("btnSpinner").classList.toggle("hidden", !busy);
+    $("btnIcon").classList.toggle("hidden", busy);
+  }
+
+  async function api(action, params={}, url=endpoint, timeoutMs=30000) {
+    if (!/^https:\/\/script\.google\.com\/macros\/s\/[^/]+\/exec$/.test(url)) {
+      throw new Error("Ayarlar'a geçerli Apps Script bağlantısını girin.");
+    }
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), timeoutMs);
+    try {
+      const query = new URLSearchParams(Object.assign({ action, t: String(Date.now()) }, params));
+      const response = await fetch(url+"?"+query, { signal: controller.signal, redirect:"follow", cache:"no-store" });
+      const raw = await response.text();
+      let data;
+      try { data = JSON.parse(raw); } catch(_) { throw new Error("Sunucu JSON döndürmedi."); }
+      if (!response.ok || !data || data.result === "error") {
+        throw new Error(data && data.error ? data.error : "Sunucu hatası.");
+      }
+      return data;
+    } catch(error) {
+      if (error.name === "AbortError") throw new Error("Zaman aşımı.");
+      if (error instanceof TypeError) throw new Error("Sunucuya erişilemiyor.");
+      throw error;
+    } finally {
+      clearTimeout(timer);
+    }
+  }
+
+  function formatTL(num) {
+    return num.toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " TL";
+  }
+
+  async function loadSummary() {
+    if (!endpoint) {
+      $("summaryCard").innerHTML = `<div class="summary-row"><span class="summary-label" style="color:#f4be7c">Ayarlar'dan bağlantı ekleyin.</span></div>`;
+      return;
+    }
+    $("summaryCard").innerHTML = `<div class="summary-row"><span class="summary-label">Yükleniyor…</span></div>`;
+    try {
+      const data = await api("getSummary", {}, endpoint, 20000);
+      const turleri = [
+        "YEMEK (KENDİSİ)","İKRAM (MÜŞTERİSİ)","YOL-OTOPARK",
+        "YAKIT","KONAKLAMA","DİĞER","BELGESİZ HARCAMA"
+      ];
+      const labels = {
+        "YEMEK (KENDİSİ)": "Yemek (Kendisi)",
+        "İKRAM (MÜŞTERİSİ)": "İkram (Müşterisi)",
+        "YOL-OTOPARK": "Yol - Otopark",
+        "YAKIT": "Yakıt",
+        "KONAKLAMA": "Konaklama",
+        "DİĞER": "Diğer",
+        "BELGESİZ HARCAMA": "Belgesiz Harcama"
+      };
+      let html = "";
+      turleri.forEach(t => {
+        const val = data.totals[t] || 0;
+        const cls = val > 0 ? "nonzero" : "";
+        html += `<div class="summary-row">
+          <span class="summary-label">${labels[t]}</span>
+          <span class="summary-val ${cls}">${val > 0 ? formatTL(val) : "—"}</span>
+        </div>`;
+      });
+      html += `<div class="summary-total">
+        <span class="summary-label">GENEL TOPLAM</span>
+        <span class="summary-val nonzero">${formatTL(data.grandTotal || 0)}</span>
+      </div>`;
+      $("summaryCard").innerHTML = html;
+    } catch(error) {
+      $("summaryCard").innerHTML = `<div class="summary-row"><span class="summary-label" style="color:#ff9e9e">${error.message}</span></div>`;
+    }
+  }
+
+  $("refreshBtn").addEventListener("click", loadSummary);
+
+  async function submit() {
+    if (busy) return;
+
+    if (!$("tarih").value) { message("Tarih zorunludur.", true); $("tarih").focus(); return; }
+    if (!$("il").value.trim()) { message("İl zorunludur.", true); $("il").focus(); return; }
+    if (!$("tur").value) { message("Masraf türü seçiniz.", true); $("tur").focus(); return; }
+    if (!$("tutar").value || parseFloat($("tutar").value) <= 0) { message("Geçerli bir tutar girin.", true); $("tutar").focus(); return; }
+
+    busy = true;
+    lockForm();
+
+    try {
+      const id = crypto.randomUUID();
+      const params = {
+        requestId: id,
+        tarih: $("tarih").value.split("-").reverse().join("."),
+        il: upper($("il").value),
+        tur: $("tur").value,
+        tutar: parseFloat($("tutar").value).toFixed(2),
+        aciklama: $("aciklama").value.trim()
+      };
+
+      message("Kaydediliyor…");
+      const data = await api("saveMasraf", params, endpoint, 30000);
+
+      $("tutar").value = "";
+      $("aciklama").value = "";
+      $("tur").value = "";
+
+      message("✓ Kaydedildi → Satır " + data.row);
+      showFlash();
+      await loadSummary();
+      setTimeout(() => $("tur").focus(), 100);
+
+    } catch(error) {
+      message(error.message, true);
+    } finally {
+      busy = false;
+      lockForm();
+    }
+  }
+
+  $("submitBtn").addEventListener("click", submit);
+  $("masrafForm").addEventListener("submit", e => { e.preventDefault(); submit(); });
+
+  $("openSettingsBtn").addEventListener("click", () => {
+    $("scriptUrlInput").value = endpoint;
+    $("settingsModal").classList.remove("hidden");
+    $("settingsModal").classList.add("flex");
+  });
+
+  $("closeSettingsBtn").addEventListener("click", () => {
+    $("settingsModal").classList.add("hidden");
+    $("settingsModal").classList.remove("flex");
+  });
+
+  $("saveSettingsBtn").addEventListener("click", async () => {
+    if (busy) return;
+    const url = $("scriptUrlInput").value.trim();
+    $("saveSettingsBtn").disabled = true;
+    try {
+      const data = await api("ping", {}, url, 30000);
+      if (data.version !== "masraf-v1") throw new Error("Yanlış Apps Script bağlandı.");
+      endpoint = url;
+      try { localStorage.setItem("masrafScriptUrl", url); } catch(_) {}
+      $("closeSettingsBtn").click();
+      message("Bağlantı doğrulandı: " + data.spreadsheet);
+      await loadSummary();
+    } catch(error) {
+      alert(error.message);
+      message(error.message, true);
+    } finally {
+      $("saveSettingsBtn").disabled = false;
+    }
+  });
+
+  loadSummary();
+})();
+</script>
+</body>
+</html>
