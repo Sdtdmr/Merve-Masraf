@@ -2,27 +2,15 @@
 <html lang="tr">
 <head>
 <meta charset="utf-8">
-<meta
-  name="viewport"
-  content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover,user-scalable=no"
->
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover,user-scalable=no">
 <meta name="theme-color" content="#0d0f10">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta
-  name="apple-mobile-web-app-status-bar-style"
-  content="black-translucent"
->
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Masraf">
 <title>Masraf Asistanı</title>
 
-<link
-  href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
-  rel="stylesheet"
->
-<link
-  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
-  rel="stylesheet"
->
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
 
 <style>
 :root {
@@ -42,31 +30,20 @@
 }
 
 html {
-  width:100%;
-  overflow-x:hidden;
   background:var(--bg);
   color-scheme:dark;
 }
 
 body {
-  width:100%;
   margin:0;
   min-height:100dvh;
   overflow-x:hidden;
   background:
-    radial-gradient(
-      circle at 0 0,
-      rgba(12,112,82,.18),
-      transparent 25rem
-    ),
+    radial-gradient(circle at 0 0,rgba(12,112,82,.18),transparent 25rem),
     var(--bg);
   color:var(--white);
   font-family:Manrope,sans-serif;
-  padding-bottom:
-    calc(
-      28px +
-      env(safe-area-inset-bottom)
-    );
+  padding-bottom:calc(28px + env(safe-area-inset-bottom));
 }
 
 button,
@@ -81,11 +58,11 @@ button {
 }
 
 .hidden {
-  display:none !important;
+  display:none!important;
 }
 
 .flex {
-  display:flex !important;
+  display:flex!important;
 }
 
 .app {
@@ -100,17 +77,9 @@ button {
   top:0;
   z-index:40;
   margin:0 -16px;
-  padding:
-    calc(
-      12px +
-      env(safe-area-inset-top)
-    )
-    16px
-    12px;
+  padding:calc(12px + env(safe-area-inset-top)) 16px 12px;
   background:rgba(13,15,16,.9);
-  border-bottom:
-    1px solid
-    rgba(255,255,255,.05);
+  border-bottom:1px solid rgba(255,255,255,.05);
   backdrop-filter:blur(18px);
 }
 
@@ -135,12 +104,9 @@ button {
   display:grid;
   place-items:center;
   flex-shrink:0;
-  border:
-    1px solid
-    rgba(24,201,154,.55);
+  border:1px solid rgba(24,201,154,.55);
   border-radius:50%;
-  background:
-    rgba(24,201,154,.07);
+  background:rgba(24,201,154,.07);
   color:var(--green);
   font-size:13px;
   font-weight:800;
@@ -175,8 +141,7 @@ button {
 .settings:active {
   transform:scale(.94);
   color:var(--green);
-  border-color:
-    rgba(24,201,154,.5);
+  border-color:rgba(24,201,154,.5);
 }
 
 .intro {
@@ -194,12 +159,9 @@ button {
 #syncStatus {
   margin:0 0 14px;
   padding:11px 13px;
-  border:
-    1px solid
-    rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.06);
   border-radius:12px;
-  background:
-    rgba(255,255,255,.025);
+  background:rgba(255,255,255,.025);
   color:#a9c5ba;
   font-size:12px;
   line-height:1.5;
@@ -218,23 +180,14 @@ button {
   width:100%;
   min-width:0;
   padding:19px 16px;
-  overflow:hidden;
   border:1px solid var(--line);
   border-radius:20px;
-  background:
-    linear-gradient(
-      145deg,
-      rgba(25,27,29,.98),
-      rgba(20,22,24,.98)
-    );
-  box-shadow:
-    0 18px 42px
-    rgba(0,0,0,.17);
+  background:linear-gradient(145deg,rgba(25,27,29,.98),rgba(20,22,24,.98));
+  box-shadow:0 18px 42px rgba(0,0,0,.17);
 }
 
 .card.accent {
-  border-color:
-    rgba(24,201,154,.5);
+  border-color:rgba(24,201,154,.5);
 }
 
 .card-head {
@@ -259,12 +212,9 @@ button {
   display:grid;
   place-items:center;
   flex-shrink:0;
-  border:
-    1px solid
-    rgba(24,201,154,.28);
+  border:1px solid rgba(24,201,154,.28);
   border-radius:12px;
-  background:
-    rgba(24,201,154,.07);
+  background:rgba(24,201,154,.07);
   color:var(--green);
 }
 
@@ -280,9 +230,7 @@ button {
 .step {
   flex-shrink:0;
   padding:5px 8px;
-  border:
-    1px solid
-    rgba(24,201,154,.24);
+  border:1px solid rgba(24,201,154,.24);
   border-radius:999px;
   color:var(--green);
   font-size:9px;
@@ -316,7 +264,6 @@ button {
 
 .input-wrap {
   position:relative;
-  display:block;
   width:100%;
   min-width:0;
   max-width:100%;
@@ -348,13 +295,53 @@ button {
   box-shadow:none;
 }
 
-/* iPhone ve mobil tarayıcı tarih taşma düzeltmesi */
-input[type="date"].control {
-  display:block;
+/* MOBİL TARİH ALANI */
+
+.date-control {
+  position:relative;
+  display:flex;
+  align-items:center;
   width:100%;
   min-width:0;
   max-width:100%;
-  -webkit-min-logical-width:0;
+  min-height:52px;
+  padding:13px 42px;
+  overflow:hidden;
+  border:1px solid #303337;
+  border-radius:14px;
+  background:var(--field);
+}
+
+.date-control:focus-within {
+  border-color:var(--green);
+  box-shadow:0 0 0 4px rgba(24,201,154,.08);
+}
+
+.date-display {
+  display:block;
+  min-width:0;
+  color:var(--white);
+  font-size:16px;
+  line-height:1.2;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.date-native {
+  position:absolute;
+  inset:0;
+  z-index:3;
+  display:block;
+  width:100%;
+  height:100%;
+  min-width:0;
+  max-width:100%;
+  margin:0;
+  padding:0;
+  border:0;
+  opacity:0;
+  cursor:pointer;
 }
 
 .control.icon {
@@ -371,9 +358,7 @@ input[type="date"].control {
 
 .control:focus {
   border-color:var(--green);
-  box-shadow:
-    0 0 0 4px
-    rgba(24,201,154,.08);
+  box-shadow:0 0 0 4px rgba(24,201,154,.08);
 }
 
 .control:disabled {
@@ -460,18 +445,11 @@ textarea.control {
   gap:9px;
   border:0;
   border-radius:16px;
-  background:
-    linear-gradient(
-      110deg,
-      #1ad09d,
-      #10b986
-    );
+  background:linear-gradient(110deg,#1ad09d,#10b986);
   color:#061510;
   font-size:14px;
   font-weight:800;
-  box-shadow:
-    0 14px 32px
-    rgba(11,185,132,.2);
+  box-shadow:0 14px 32px rgba(11,185,132,.2);
 }
 
 .submit:active {
@@ -486,13 +464,10 @@ textarea.control {
 .spinner {
   width:20px;
   height:20px;
-  border:
-    3px solid
-    rgba(6,21,16,.25);
+  border:3px solid rgba(6,21,16,.25);
   border-top-color:#061510;
   border-radius:50%;
-  animation:
-    spin .8s linear infinite;
+  animation:spin .8s linear infinite;
 }
 
 .summary-total {
@@ -513,12 +488,9 @@ textarea.control {
 .summary-item {
   min-width:0;
   padding:11px;
-  border:
-    1px solid
-    rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.06);
   border-radius:12px;
-  background:
-    rgba(255,255,255,.025);
+  background:rgba(255,255,255,.025);
 }
 
 .summary-item span {
@@ -561,16 +533,8 @@ textarea.control {
 #settingsCard {
   width:100%;
   max-width:480px;
-  padding:
-    22px
-    18px
-    calc(
-      22px +
-      env(safe-area-inset-bottom)
-    );
-  border:
-    1px solid
-    rgba(24,201,154,.32);
+  padding:22px 18px calc(22px + env(safe-area-inset-bottom));
+  border:1px solid rgba(24,201,154,.32);
   border-bottom:0;
   border-radius:24px 24px 0 0;
   background:#181a1b;
@@ -626,8 +590,8 @@ textarea.control {
 
 @media (prefers-reduced-motion:reduce) {
   * {
-    animation:none !important;
-    transition:none !important;
+    animation:none!important;
+    transition:none!important;
   }
 }
 </style>
@@ -652,31 +616,21 @@ textarea.control {
         type="button"
         aria-label="Ayarlar"
       >
-        <span class="material-symbols-outlined">
-          tune
-        </span>
+        <span class="material-symbols-outlined">tune</span>
       </button>
     </div>
   </header>
 
   <main>
     <section class="intro">
-      <p class="kicker">
-        YENİ MASRAF
-      </p>
+      <p class="kicker">YENİ MASRAF</p>
     </section>
 
-    <p
-      id="syncStatus"
-      role="status"
-    >
+    <p id="syncStatus" role="status">
       Bağlantı kontrol ediliyor…
     </p>
 
-    <form
-      id="expenseForm"
-      class="form-stack"
-    >
+    <form id="expenseForm" class="form-stack">
       <section class="card accent">
         <div class="card-head">
           <div class="card-title">
@@ -689,35 +643,34 @@ textarea.control {
             <h3>Tarih ve il</h3>
           </div>
 
-          <span class="step">
-            01
-          </span>
+          <span class="step">01</span>
         </div>
 
         <div class="fields">
           <div class="field">
-            <label for="tarih">
-              Tarih
-            </label>
+            <label for="tarih">Tarih</label>
 
-            <div class="input-wrap">
+            <div class="date-control">
               <span class="material-symbols-outlined input-icon">
                 calendar_month
               </span>
 
+              <span id="dateDisplay" class="date-display">
+                Tarih seçin
+              </span>
+
               <input
                 id="tarih"
-                class="control icon"
+                class="date-native"
                 type="date"
+                aria-label="Tarih"
                 required
               >
             </div>
           </div>
 
           <div class="field">
-            <label for="sehir">
-              İl
-            </label>
+            <label for="sehir">İl</label>
 
             <div class="input-wrap">
               <span class="material-symbols-outlined input-icon">
@@ -735,10 +688,7 @@ textarea.control {
               >
             </div>
 
-            <ul
-              id="sehirList"
-              class="hidden"
-            ></ul>
+            <ul id="sehirList" class="hidden"></ul>
           </div>
         </div>
       </section>
@@ -755,16 +705,12 @@ textarea.control {
             <h3>Masraf bilgisi</h3>
           </div>
 
-          <span class="step">
-            02
-          </span>
+          <span class="step">02</span>
         </div>
 
         <div class="fields">
           <div class="field">
-            <label for="masrafTuru">
-              Masraf Türü
-            </label>
+            <label for="masrafTuru">Masraf Türü</label>
 
             <div class="input-wrap">
               <span class="material-symbols-outlined input-icon">
@@ -816,9 +762,7 @@ textarea.control {
           </div>
 
           <div class="field">
-            <label for="tutar">
-              Tutar
-            </label>
+            <label for="tutar">Tutar</label>
 
             <div class="input-wrap">
               <span class="material-symbols-outlined input-icon">
@@ -835,9 +779,7 @@ textarea.control {
                 required
               >
 
-              <span class="tl-suffix">
-                TL
-              </span>
+              <span class="tl-suffix">TL</span>
             </div>
           </div>
         </div>
@@ -855,15 +797,11 @@ textarea.control {
             <h3>Açıklama</h3>
           </div>
 
-          <span class="step">
-            03
-          </span>
+          <span class="step">03</span>
         </div>
 
         <div class="field">
-          <label for="aciklama">
-            Masraf Detayı
-          </label>
+          <label for="aciklama">Masraf Detayı</label>
 
           <textarea
             id="aciklama"
@@ -888,9 +826,7 @@ textarea.control {
           add_circle
         </span>
 
-        <span id="btnText">
-          Masrafı Kaydet
-        </span>
+        <span id="btnText">Masrafı Kaydet</span>
 
         <span
           id="btnSpinner"
@@ -899,10 +835,7 @@ textarea.control {
         ></span>
       </button>
 
-      <section
-        class="card"
-        id="summaryCard"
-      >
+      <section class="card" id="summaryCard">
         <div class="card-head">
           <div class="card-title">
             <div class="card-icon">
@@ -914,66 +847,47 @@ textarea.control {
             <h3>Alt toplamlar</h3>
           </div>
 
-          <span class="step">
-            TOPLAM
-          </span>
+          <span class="step">TOPLAM</span>
         </div>
 
-        <p
-          class="summary-total"
-          id="grandTotal"
-        >
+        <p class="summary-total" id="grandTotal">
           0,00 TL
         </p>
 
         <div class="summary-grid">
           <div class="summary-item">
             <span>Yemek</span>
-            <strong id="sumYemek">
-              0,00 TL
-            </strong>
+            <strong id="sumYemek">0,00 TL</strong>
           </div>
 
           <div class="summary-item">
             <span>İkram</span>
-            <strong id="sumIkram">
-              0,00 TL
-            </strong>
+            <strong id="sumIkram">0,00 TL</strong>
           </div>
 
           <div class="summary-item">
             <span>Yol-Otopark</span>
-            <strong id="sumYolOtopark">
-              0,00 TL
-            </strong>
+            <strong id="sumYolOtopark">0,00 TL</strong>
           </div>
 
           <div class="summary-item">
             <span>Yakıt</span>
-            <strong id="sumYakit">
-              0,00 TL
-            </strong>
+            <strong id="sumYakit">0,00 TL</strong>
           </div>
 
           <div class="summary-item">
             <span>Konaklama</span>
-            <strong id="sumKonaklama">
-              0,00 TL
-            </strong>
+            <strong id="sumKonaklama">0,00 TL</strong>
           </div>
 
           <div class="summary-item">
             <span>Diğer</span>
-            <strong id="sumDiger">
-              0,00 TL
-            </strong>
+            <strong id="sumDiger">0,00 TL</strong>
           </div>
 
           <div class="summary-item">
             <span>Belgesiz Harcama</span>
-            <strong id="sumBelgesiz">
-              0,00 TL
-            </strong>
+            <strong id="sumBelgesiz">0,00 TL</strong>
           </div>
         </div>
       </section>
@@ -985,10 +899,7 @@ textarea.control {
   </main>
 </div>
 
-<div
-  id="settingsModal"
-  class="hidden"
->
+<div id="settingsModal" class="hidden">
   <div id="settingsCard">
     <h2>Bağlantı Ayarları</h2>
 
@@ -1028,17 +939,11 @@ textarea.control {
 (() => {
   "use strict";
 
-  const $ = id =>
-    document.getElementById(id);
+  const $ = id => document.getElementById(id);
 
-  const API_VERSION =
-    "expense-form-1";
-
-  const URL_KEY =
-    "expenseScriptUrl";
-
-  const CITY_KEY =
-    "expenseLastCity";
+  const API_VERSION = "expense-form-1";
+  const URL_KEY = "expenseScriptUrl";
+  const CITY_KEY = "expenseLastCity";
 
   const fields = [
     "tarih",
@@ -1059,13 +964,7 @@ textarea.control {
   const cities =
     "Adana|Adıyaman|Afyonkarahisar|Ağrı|Aksaray|Amasya|Ankara|Antalya|Artvin|Aydın|Balıkesir|Bartın|Batman|Bayburt|Bilecik|Bingöl|Bitlis|Bolu|Burdur|Bursa|Çanakkale|Çankırı|Çorum|Denizli|Diyarbakır|Düzce|Edirne|Elazığ|Erzincan|Erzurum|Eskişehir|Gaziantep|Giresun|Gümüşhane|Hakkari|Hatay|Iğdır|Isparta|İstanbul|İzmir|Kahramanmaraş|Karabük|Karaman|Kars|Kastamonu|Kayseri|Kırıkkale|Kırklareli|Kırşehir|Kilis|Kocaeli|Konya|Kütahya|Malatya|Manisa|Mardin|Mersin|Muğla|Muş|Nevşehir|Niğde|Ordu|Osmaniye|Rize|Sakarya|Samsun|Siirt|Sinop|Sivas|Şanlıurfa|Şırnak|Tekirdağ|Tokat|Trabzon|Tunceli|Uşak|Van|Yalova|Yozgat|Zonguldak"
       .split("|")
-      .sort(
-        (a,b) =>
-          a.localeCompare(
-            b,
-            "tr"
-          )
-      );
+      .sort((a,b) => a.localeCompare(b,"tr"));
 
   const summaryIds = {
     yemek:"sumYemek",
@@ -1084,11 +983,7 @@ textarea.control {
   const ram = new Map();
 
   const clean = value =>
-    String(
-      value == null
-        ? ""
-        : value
-    )
+    String(value == null ? "" : value)
       .trim()
       .replace(/\s+/g," ");
 
@@ -1097,18 +992,11 @@ textarea.control {
       .toLocaleLowerCase("tr-TR")
       .replace(/ı/g,"i")
       .normalize("NFD")
-      .replace(
-        /[\u0300-\u036f]/g,
-        ""
-      );
+      .replace(/[\u0300-\u036f]/g,"");
 
-  function read(
-    name,
-    fallback
-  ) {
+  function read(name,fallback) {
     try {
-      const raw =
-        localStorage.getItem(name);
+      const raw = localStorage.getItem(name);
 
       return raw === null
         ? fallback
@@ -1120,10 +1008,7 @@ textarea.control {
     }
   }
 
-  function save(
-    name,
-    value
-  ) {
+  function save(name,value) {
     ram.set(name,value);
 
     try {
@@ -1141,9 +1026,7 @@ textarea.control {
 
   try {
     endpoint =
-      localStorage.getItem(
-        URL_KEY
-      ) || "";
+      localStorage.getItem(URL_KEY) || "";
   } catch (_) {}
 
   const pendingKey = () =>
@@ -1151,12 +1034,8 @@ textarea.control {
     endpoint +
     ":pending";
 
-  function message(
-    text,
-    error = false
-  ) {
-    $("syncStatus").textContent =
-      text;
+  function message(text,error = false) {
+    $("syncStatus").textContent = text;
 
     $("syncStatus").style.color =
       error
@@ -1172,8 +1051,7 @@ textarea.control {
   function makeId() {
     if (
       window.crypto &&
-      typeof window.crypto.randomUUID ===
-        "function"
+      typeof window.crypto.randomUUID === "function"
     ) {
       return window.crypto.randomUUID();
     }
@@ -1182,10 +1060,37 @@ textarea.control {
       "expense-" +
       Date.now() +
       "-" +
-      Math.random()
-        .toString(36)
-        .slice(2,12)
+      Math.random().toString(36).slice(2,12)
     );
+  }
+
+  function updateDateDisplay() {
+    const parts = $("tarih").value.split("-");
+
+    if (parts.length !== 3) {
+      $("dateDisplay").textContent =
+        "Tarih seçin";
+      return;
+    }
+
+    const date = new Date(
+      Number(parts[0]),
+      Number(parts[1]) - 1,
+      Number(parts[2]),
+      12,
+      0,
+      0
+    );
+
+    $("dateDisplay").textContent =
+      new Intl.DateTimeFormat(
+        "tr-TR",
+        {
+          day:"numeric",
+          month:"short",
+          year:"numeric"
+        }
+      ).format(date);
   }
 
   function setToday() {
@@ -1194,23 +1099,18 @@ textarea.control {
     $("tarih").value =
       today.getFullYear() +
       "-" +
-      String(
-        today.getMonth() + 1
-      ).padStart(2,"0") +
+      String(today.getMonth() + 1).padStart(2,"0") +
       "-" +
-      String(
-        today.getDate()
-      ).padStart(2,"0");
+      String(today.getDate()).padStart(2,"0");
+
+    updateDateDisplay();
   }
 
   function formattedDate() {
-    const parts =
-      $("tarih").value.split("-");
+    const parts = $("tarih").value.split("-");
 
     if (parts.length !== 3) {
-      throw new Error(
-        "Tarih seçin."
-      );
+      throw new Error("Tarih seçin.");
     }
 
     return (
@@ -1252,9 +1152,7 @@ textarea.control {
           minimumFractionDigits:2,
           maximumFractionDigits:2
         }
-      ).format(
-        Number(value) || 0
-      ) +
+      ).format(Number(value) || 0) +
       " TL"
     );
   }
@@ -1272,22 +1170,14 @@ textarea.control {
         summary.total
       );
 
-    Object
-      .keys(summaryIds)
-      .forEach(key => {
-        $(
-          summaryIds[key]
-        ).textContent =
-          formatTL(
-            categories[key]
-          );
-      });
+    Object.keys(summaryIds).forEach(key => {
+      $(summaryIds[key]).textContent =
+        formatTL(categories[key]);
+    });
   }
 
   function validUrl(url) {
-    return /^https:\/\/script\.google\.com\/macros\/s\/[^/]+\/exec$/.test(
-      url
-    );
+    return /^https:\/\/script\.google\.com\/macros\/s\/[^/]+\/exec$/.test(url);
   }
 
   async function api(
@@ -1316,24 +1206,20 @@ textarea.control {
           Object.assign(
             {
               action:action,
-              t:String(
-                Date.now()
-              )
+              t:String(Date.now())
             },
             params
           )
         );
 
-      const response =
-        await fetch(
-          url + "?" + query,
-          {
-            signal:
-              controller.signal,
-            redirect:"follow",
-            cache:"no-store"
-          }
-        );
+      const response = await fetch(
+        url + "?" + query,
+        {
+          signal:controller.signal,
+          redirect:"follow",
+          cache:"no-store"
+        }
+      );
 
       const raw =
         await response.text();
@@ -1353,38 +1239,29 @@ textarea.control {
         !data ||
         data.result === "error"
       ) {
-        const error =
-          new Error(
-            data &&
-            data.error
-              ? data.error
-              : "Sunucu hatası."
-          );
+        const error = new Error(
+          data && data.error
+            ? data.error
+            : "Sunucu hatası."
+        );
 
         error.terminalReceipt =
-          action ===
-            "getReceipt" &&
+          action === "getReceipt" &&
           data &&
-          data.result ===
-            "error";
+          data.result === "error";
 
         throw error;
       }
 
       return data;
     } catch (error) {
-      if (
-        error.name ===
-        "AbortError"
-      ) {
+      if (error.name === "AbortError") {
         throw new Error(
           "Sunucu zaman aşımı. Bağlantıyı kontrol edin."
         );
       }
 
-      if (
-        error instanceof TypeError
-      ) {
+      if (error instanceof TypeError) {
         throw new Error(
           "Sunucuya erişilemiyor. İnternet veya Apps Script bağlantısını kontrol edin."
         );
@@ -1397,10 +1274,7 @@ textarea.control {
   }
 
   function checkVersion(data) {
-    if (
-      data.version !==
-      API_VERSION
-    ) {
+    if (data.version !== API_VERSION) {
       throw new Error(
         "Apps Script eski veya farklı bir sürümde. Yeni masraf kodunu dağıtın."
       );
@@ -1408,22 +1282,17 @@ textarea.control {
   }
 
   async function refreshSummary() {
-    if (
-      !endpoint ||
-      busy ||
-      pending
-    ) {
+    if (!endpoint || busy || pending) {
       return;
     }
 
     try {
-      const data =
-        await api(
-          "getSummary",
-          {},
-          endpoint,
-          20000
-        );
+      const data = await api(
+        "getSummary",
+        {},
+        endpoint,
+        20000
+      );
 
       checkVersion(data);
       renderSummary(data);
@@ -1433,25 +1302,18 @@ textarea.control {
         data.nextNo
       );
     } catch (error) {
-      message(
-        error.message,
-        true
-      );
+      message(error.message,true);
     }
   }
 
   function lockForm() {
     fields.forEach(id => {
       $(id).disabled =
-        busy ||
-        Boolean(pending);
+        busy || Boolean(pending);
     });
 
-    $("submitBtn").disabled =
-      busy;
-
-    $("saveSettingsBtn").disabled =
-      busy;
+    $("submitBtn").disabled = busy;
+    $("saveSettingsBtn").disabled = busy;
 
     $("btnText").textContent =
       busy
@@ -1460,24 +1322,17 @@ textarea.control {
           ? "Kaydı kontrol et / yeniden dene"
           : "Masrafı Kaydet";
 
-    $("btnIcon")
-      .classList
-      .toggle(
-        "hidden",
-        busy
-      );
+    $("btnIcon").classList.toggle(
+      "hidden",
+      busy
+    );
 
-    $("btnSpinner")
-      .classList
-      .toggle(
-        "hidden",
-        !busy
-      );
+    $("btnSpinner").classList.toggle(
+      "hidden",
+      !busy
+    );
 
-    if (
-      busy ||
-      pending
-    ) {
+    if (busy || pending) {
       closeCityList();
     }
   }
@@ -1489,66 +1344,42 @@ textarea.control {
   }
 
   function renderCities() {
-    const list =
-      $("sehirList");
-
-    const query =
-      searchKey(
-        $("sehir").value
-      );
+    const list = $("sehirList");
+    const query = searchKey($("sehir").value);
 
     list.replaceChildren();
 
-    if (
-      busy ||
-      pending
-    ) {
+    if (busy || pending) {
       return closeCityList();
     }
 
-    const matches =
-      cities
-        .filter(city =>
-          searchKey(city)
-            .includes(query)
-        )
-        .slice(0,30);
+    const matches = cities
+      .filter(city =>
+        searchKey(city).includes(query)
+      )
+      .slice(0,30);
 
     matches.forEach(city => {
       const item =
         document.createElement("li");
 
       const button =
-        document.createElement(
-          "button"
-        );
+        document.createElement("button");
 
-      button.type =
-        "button";
-
-      button.className =
-        "city-choice";
-
-      button.textContent =
-        city;
+      button.type = "button";
+      button.className = "city-choice";
+      button.textContent = city;
 
       button.addEventListener(
         "mousedown",
-        event =>
-          event.preventDefault()
+        event => event.preventDefault()
       );
 
       button.addEventListener(
         "click",
         () => {
-          $("sehir").value =
-            city;
-
-          save(
-            CITY_KEY,
-            city
-          );
-
+          $("sehir").value = city;
+          save(CITY_KEY,city);
           closeCityList();
           $("sehir").focus();
         }
@@ -1565,11 +1396,10 @@ textarea.control {
   }
 
   function restorePending() {
-    pending =
-      read(
-        pendingKey(),
-        null
-      );
+    pending = read(
+      pendingKey(),
+      null
+    );
 
     if (
       !pending ||
@@ -1586,6 +1416,8 @@ textarea.control {
           .reverse()
           .join("-");
 
+      updateDateDisplay();
+
       $("sehir").value =
         pending.sehir || "";
 
@@ -1593,9 +1425,8 @@ textarea.control {
         pending.masrafTuru || "";
 
       $("tutar").value =
-        String(
-          pending.tutar || ""
-        ).replace(".",",");
+        String(pending.tutar || "")
+          .replace(".",",");
 
       $("aciklama").value =
         pending.aciklama || "";
@@ -1613,8 +1444,7 @@ textarea.control {
     return api(
       "getReceipt",
       {
-        requestId:
-          pending.requestId
+        requestId:pending.requestId
       },
       endpoint,
       8000
@@ -1623,12 +1453,9 @@ textarea.control {
 
   function finish(data) {
     if (
-      data.result !==
-        "success" ||
+      data.result !== "success" ||
       !data.sheet ||
-      !Number.isInteger(
-        data.row
-      )
+      !Number.isInteger(data.row)
     ) {
       throw new Error(
         "Geçersiz kayıt doğrulaması."
@@ -1636,9 +1463,7 @@ textarea.control {
     }
 
     if (data.summary) {
-      renderSummary(
-        data.summary
-      );
+      renderSummary(data.summary);
     }
 
     save(
@@ -1653,14 +1478,9 @@ textarea.control {
       null
     );
 
-    $("masrafTuru").value =
-      "";
-
-    $("tutar").value =
-      "";
-
-    $("aciklama").value =
-      "";
+    $("masrafTuru").value = "";
+    $("tutar").value = "";
+    $("aciklama").value = "";
 
     message(
       "Doğrulandı: " +
@@ -1682,12 +1502,9 @@ textarea.control {
         const id of
         Object.keys(required)
       ) {
-        if (
-          !clean($(id).value)
-        ) {
+        if (!clean($(id).value)) {
           message(
-            required[id] +
-            " zorunludur.",
+            required[id] + " zorunludur.",
             true
           );
 
@@ -1697,14 +1514,10 @@ textarea.control {
       }
 
       const amount =
-        parseAmount(
-          $("tutar").value
-        );
+        parseAmount($("tutar").value);
 
       if (
-        !Number.isFinite(
-          amount
-        ) ||
+        !Number.isFinite(amount) ||
         amount <= 0
       ) {
         message(
@@ -1717,8 +1530,7 @@ textarea.control {
       }
 
       if (
-        !$("expenseForm")
-          .reportValidity()
+        !$("expenseForm").reportValidity()
       ) {
         return;
       }
@@ -1730,24 +1542,12 @@ textarea.control {
     try {
       if (!pending) {
         pending = {
-          requestId:
-            makeId(),
-          tarih:
-            formattedDate(),
-          sehir:
-            clean(
-              $("sehir").value
-            ),
-          masrafTuru:
-            $("masrafTuru").value,
-          tutar:
-            parseAmount(
-              $("tutar").value
-            ),
-          aciklama:
-            clean(
-              $("aciklama").value
-            )
+          requestId:makeId(),
+          tarih:formattedDate(),
+          sehir:clean($("sehir").value),
+          masrafTuru:$("masrafTuru").value,
+          tutar:parseAmount($("tutar").value),
+          aciklama:clean($("aciklama").value)
         };
 
         save(
@@ -1764,16 +1564,13 @@ textarea.control {
             await receipt();
 
           if (
-            previous.result ===
-            "success"
+            previous.result === "success"
           ) {
             finish(previous);
             return;
           }
         } catch (error) {
-          if (
-            error.terminalReceipt
-          ) {
+          if (error.terminalReceipt) {
             throw error;
           }
         }
@@ -1786,12 +1583,10 @@ textarea.control {
       const controller =
         new AbortController();
 
-      const timer =
-        setTimeout(
-          () =>
-            controller.abort(),
-          15000
-        );
+      const timer = setTimeout(
+        () => controller.abort(),
+        15000
+      );
 
       fetch(
         endpoint,
@@ -1802,18 +1597,13 @@ textarea.control {
             "Content-Type":
               "text/plain;charset=utf-8"
           },
-          body:
-            JSON.stringify(
-              pending
-            ),
-          signal:
-            controller.signal
+          body:JSON.stringify(pending),
+          signal:controller.signal
         }
       )
         .catch(() => {})
-        .finally(
-          () =>
-            clearTimeout(timer)
+        .finally(() =>
+          clearTimeout(timer)
         );
 
       let lastError = null;
@@ -1823,14 +1613,13 @@ textarea.control {
         index < 12;
         index++
       ) {
-        await new Promise(
-          resolve =>
-            setTimeout(
-              resolve,
-              index < 4
-                ? 600
-                : 1200
-            )
+        await new Promise(resolve =>
+          setTimeout(
+            resolve,
+            index < 4
+              ? 600
+              : 1200
+          )
         );
 
         try {
@@ -1838,8 +1627,7 @@ textarea.control {
             await receipt();
 
           if (
-            result.result ===
-            "success"
+            result.result === "success"
           ) {
             finish(result);
             return;
@@ -1847,9 +1635,7 @@ textarea.control {
 
           lastError = null;
         } catch (error) {
-          if (
-            error.terminalReceipt
-          ) {
+          if (error.terminalReceipt) {
             throw error;
           }
 
@@ -1860,8 +1646,7 @@ textarea.control {
       message(
         (
           lastError
-            ? lastError.message +
-              " "
+            ? lastError.message + " "
             : ""
         ) +
         "Kayıt henüz doğrulanamadı. Form korundu; aynı düğmeyle tekrar kontrol edin.",
@@ -1895,184 +1680,163 @@ textarea.control {
     }
   }
 
-  $("expenseForm")
-    .addEventListener(
-      "submit",
-      event => {
-        event.preventDefault();
-        submit();
-      }
-    );
+  $("expenseForm").addEventListener(
+    "submit",
+    event => {
+      event.preventDefault();
+      submit();
+    }
+  );
 
-  $("sehir")
-    .addEventListener(
-      "input",
-      () => {
-        save(
-          CITY_KEY,
-          $("sehir").value
-        );
+  $("tarih").addEventListener(
+    "change",
+    updateDateDisplay
+  );
 
-        renderCities();
-      }
-    );
+  $("sehir").addEventListener(
+    "input",
+    () => {
+      save(
+        CITY_KEY,
+        $("sehir").value
+      );
 
-  $("sehir")
-    .addEventListener(
-      "focus",
-      renderCities
-    );
+      renderCities();
+    }
+  );
+
+  $("sehir").addEventListener(
+    "focus",
+    renderCities
+  );
 
   document.addEventListener(
     "pointerdown",
     event => {
       if (
-        event.target !==
-          $("sehir") &&
-        !$("sehirList")
-          .contains(
-            event.target
-          )
+        event.target !== $("sehir") &&
+        !$("sehirList").contains(event.target)
       ) {
         closeCityList();
       }
     }
   );
 
-  $("tutar")
-    .addEventListener(
-      "input",
-      () => {
-        $("tutar").value =
-          $("tutar").value
-            .replace(
-              /[^0-9.,]/g,
-              ""
-            );
+  $("tutar").addEventListener(
+    "input",
+    () => {
+      $("tutar").value =
+        $("tutar").value.replace(
+          /[^0-9.,]/g,
+          ""
+        );
+    }
+  );
+
+  $("openSettingsBtn").addEventListener(
+    "click",
+    () => {
+      $("scriptUrlInput").value =
+        endpoint;
+
+      $("settingsModal")
+        .classList
+        .remove("hidden");
+
+      $("settingsModal")
+        .classList
+        .add("flex");
+    }
+  );
+
+  $("closeSettingsBtn").addEventListener(
+    "click",
+    () => {
+      $("settingsModal")
+        .classList
+        .add("hidden");
+
+      $("settingsModal")
+        .classList
+        .remove("flex");
+    }
+  );
+
+  $("saveSettingsBtn").addEventListener(
+    "click",
+    async () => {
+      if (busy) {
+        return;
       }
-    );
 
-  $("openSettingsBtn")
-    .addEventListener(
-      "click",
-      () => {
-        $("scriptUrlInput").value =
-          endpoint;
+      const url =
+        $("scriptUrlInput")
+          .value
+          .trim();
 
-        $("settingsModal")
-          .classList
-          .remove("hidden");
+      busy = true;
+      lockForm();
 
-        $("settingsModal")
-          .classList
-          .add("flex");
-      }
-    );
+      try {
+        const data = await api(
+          "ping",
+          {},
+          url,
+          30000
+        );
 
-  $("closeSettingsBtn")
-    .addEventListener(
-      "click",
-      () => {
-        $("settingsModal")
-          .classList
-          .add("hidden");
+        checkVersion(data);
 
-        $("settingsModal")
-          .classList
-          .remove("flex");
-      }
-    );
-
-  $("saveSettingsBtn")
-    .addEventListener(
-      "click",
-      async () => {
-        if (busy) {
-          return;
-        }
-
-        const url =
-          $("scriptUrlInput")
-            .value
-            .trim();
-
-        busy = true;
-        lockForm();
+        endpoint = url;
 
         try {
-          const data =
-            await api(
-              "ping",
-              {},
-              url,
-              30000
-            );
-
-          checkVersion(data);
-
-          endpoint = url;
-
-          try {
-            localStorage.setItem(
-              URL_KEY,
-              url
-            );
-          } catch (_) {
-            message(
-              "Bağlantı yalnızca bu oturumda saklanabildi.",
-              true
-            );
-          }
-
-          restorePending();
-
-          $("closeSettingsBtn")
-            .click();
-
-          if (!pending) {
-            renderSummary({
-              total:0,
-              categories:{}
-            });
-
-            const summary =
-              await api(
-                "getSummary",
-                {},
-                endpoint,
-                20000
-              );
-
-            checkVersion(
-              summary
-            );
-
-            renderSummary(
-              summary
-            );
-
-            message(
-              "Bağlantı doğrulandı: " +
-              data.spreadsheet +
-              " · Sıradaki kayıt no: " +
-              summary.nextNo
-            );
-          }
-        } catch (error) {
-          alert(
-            error.message
+          localStorage.setItem(
+            URL_KEY,
+            url
           );
-
+        } catch (_) {
           message(
-            error.message,
+            "Bağlantı yalnızca bu oturumda saklanabildi.",
             true
           );
-        } finally {
-          busy = false;
-          lockForm();
         }
+
+        restorePending();
+
+        $("closeSettingsBtn").click();
+
+        if (!pending) {
+          renderSummary({
+            total:0,
+            categories:{}
+          });
+
+          const summary = await api(
+            "getSummary",
+            {},
+            endpoint,
+            20000
+          );
+
+          checkVersion(summary);
+          renderSummary(summary);
+
+          message(
+            "Bağlantı doğrulandı: " +
+            data.spreadsheet +
+            " · Sıradaki kayıt no: " +
+            summary.nextNo
+          );
+        }
+      } catch (error) {
+        alert(error.message);
+        message(error.message,true);
+      } finally {
+        busy = false;
+        lockForm();
       }
-    );
+    }
+  );
 
   window.addEventListener(
     "online",
@@ -2082,10 +1846,7 @@ textarea.control {
   setToday();
 
   $("sehir").value =
-    read(
-      CITY_KEY,
-      ""
-    ) || "";
+    read(CITY_KEY,"") || "";
 
   restorePending();
   refreshSummary();
