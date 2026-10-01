@@ -602,6 +602,27 @@ textarea.control {
     transition:none!important;
   }
 }
+  /* Mobilde tarih alanının kart dışına taşmasını engeller */
+.fields,
+.field,
+.input-wrap {
+  width: 100%;
+  min-width: 0;
+}
+
+.control {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+
+input[type="date"].control {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
 </style>
 </head>
 
