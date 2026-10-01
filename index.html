@@ -2,15 +2,27 @@
 <html lang="tr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover,user-scalable=no">
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover,user-scalable=no"
+>
 <meta name="theme-color" content="#0d0f10">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta
+  name="apple-mobile-web-app-status-bar-style"
+  content="black-translucent"
+>
 <meta name="apple-mobile-web-app-title" content="Masraf">
 <title>Masraf Asistanı</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+<link
+  href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+  rel="stylesheet"
+>
+<link
+  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+  rel="stylesheet"
+>
 
 <style>
 :root {
@@ -30,11 +42,14 @@
 }
 
 html {
+  width:100%;
+  overflow-x:hidden;
   background:var(--bg);
   color-scheme:dark;
 }
 
 body {
+  width:100%;
   margin:0;
   min-height:100dvh;
   overflow-x:hidden;
@@ -66,11 +81,11 @@ button {
 }
 
 .hidden {
-  display:none!important;
+  display:none !important;
 }
 
 .flex {
-  display:flex!important;
+  display:flex !important;
 }
 
 .app {
@@ -111,6 +126,7 @@ button {
   display:flex;
   align-items:center;
   gap:11px;
+  min-width:0;
 }
 
 .brand-mark {
@@ -150,9 +166,7 @@ button {
   display:grid;
   place-items:center;
   flex-shrink:0;
-  border:
-    1px solid
-    var(--line);
+  border:1px solid var(--line);
   border-radius:50%;
   background:var(--card);
   color:#c8c9cc;
@@ -196,14 +210,16 @@ button {
   display:flex;
   flex-direction:column;
   gap:14px;
+  width:100%;
+  min-width:0;
 }
 
 .card {
   width:100%;
+  min-width:0;
   padding:19px 16px;
-  border:
-    1px solid
-    var(--line);
+  overflow:hidden;
+  border:1px solid var(--line);
   border-radius:20px;
   background:
     linear-gradient(
@@ -225,6 +241,8 @@ button {
   display:flex;
   align-items:center;
   justify-content:space-between;
+  gap:12px;
+  min-width:0;
   margin-bottom:17px;
 }
 
@@ -232,6 +250,7 @@ button {
   display:flex;
   align-items:center;
   gap:10px;
+  min-width:0;
 }
 
 .card-icon {
@@ -259,6 +278,7 @@ button {
 }
 
 .step {
+  flex-shrink:0;
   padding:5px 8px;
   border:
     1px solid
@@ -274,6 +294,8 @@ button {
   display:flex;
   flex-direction:column;
   gap:14px;
+  width:100%;
+  min-width:0;
 }
 
 .field {
@@ -281,6 +303,8 @@ button {
   display:flex;
   flex-direction:column;
   gap:7px;
+  width:100%;
+  min-width:0;
 }
 
 .field label {
@@ -292,6 +316,10 @@ button {
 
 .input-wrap {
   position:relative;
+  display:block;
+  width:100%;
+  min-width:0;
+  max-width:100%;
 }
 
 .input-icon {
@@ -306,17 +334,27 @@ button {
 }
 
 .control {
+  display:block;
   width:100%;
+  min-width:0;
+  max-width:100%;
   min-height:52px;
   padding:13px 14px;
-  border:
-    1px solid
-    #303337;
+  border:1px solid #303337;
   border-radius:14px;
   outline:none;
   background:var(--field);
   color:var(--white);
   box-shadow:none;
+}
+
+/* iPhone ve mobil tarayıcı tarih taşma düzeltmesi */
+input[type="date"].control {
+  display:block;
+  width:100%;
+  min-width:0;
+  max-width:100%;
+  -webkit-min-logical-width:0;
 }
 
 .control.icon {
@@ -344,6 +382,7 @@ button {
 
 select.control {
   appearance:none;
+  -webkit-appearance:none;
   padding-right:42px;
 }
 
@@ -384,12 +423,9 @@ textarea.control {
   margin:6px 0 0;
   list-style:none;
   background:#191c1d;
-  border:
-    1px solid
-    #337a66;
+  border:1px solid #337a66;
   border-radius:14px;
-  box-shadow:
-    0 15px 35px #0008;
+  box-shadow:0 15px 35px #0008;
 }
 
 #sehirList li {
@@ -411,9 +447,7 @@ textarea.control {
 .city-choice:hover,
 .city-choice:focus {
   background:#23483d;
-  outline:
-    2px solid
-    var(--green);
+  outline:2px solid var(--green);
   outline-offset:-2px;
 }
 
@@ -471,9 +505,9 @@ textarea.control {
 
 .summary-grid {
   display:grid;
-  grid-template-columns:
-    1fr 1fr;
+  grid-template-columns:1fr 1fr;
   gap:8px;
+  min-width:0;
 }
 
 .summary-item {
@@ -538,8 +572,7 @@ textarea.control {
     1px solid
     rgba(24,201,154,.32);
   border-bottom:0;
-  border-radius:
-    24px 24px 0 0;
+  border-radius:24px 24px 0 0;
   background:#181a1b;
 }
 
@@ -555,8 +588,7 @@ textarea.control {
 
 .modal-actions {
   display:grid;
-  grid-template-columns:
-    1fr 1fr;
+  grid-template-columns:1fr 1fr;
   gap:10px;
   margin-top:18px;
 }
@@ -569,9 +601,7 @@ textarea.control {
 }
 
 .cancel {
-  border:
-    1px solid
-    var(--line);
+  border:1px solid var(--line);
   background:#111314;
   color:#a9abad;
 }
@@ -594,391 +624,365 @@ textarea.control {
   }
 }
 
-@media (
-  prefers-reduced-motion:reduce
-) {
+@media (prefers-reduced-motion:reduce) {
   * {
-    animation:none!important;
-    transition:none!important;
+    animation:none !important;
+    transition:none !important;
   }
-}
-  /* Mobilde tarih alanının kart dışına taşmasını engeller */
-.fields,
-.field,
-.input-wrap {
-  width: 100%;
-  min-width: 0;
-}
-
-.control {
-  display: block;
-  width: 100%;
-  min-width: 0;
-  max-width: 100%;
-}
-
-input[type="date"].control {
-  display: block;
-  width: 100%;
-  min-width: 0;
-  max-width: 100%;
 }
 </style>
 </head>
 
 <body>
 <div class="app">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="brand-mark">SD</div>
 
-<header class="topbar">
-  <div class="topbar-inner">
-    <div class="brand">
-      <div class="brand-mark">
-        SD
+        <div>
+          <h1>Masraf Asistanı</h1>
+          <p>KİŞİSEL ÇALIŞMA ALANI</p>
+        </div>
       </div>
 
-      <div>
-        <h1>Masraf Asistanı</h1>
-        <p>KİŞİSEL ÇALIŞMA ALANI</p>
-      </div>
+      <button
+        id="openSettingsBtn"
+        class="settings"
+        type="button"
+        aria-label="Ayarlar"
+      >
+        <span class="material-symbols-outlined">
+          tune
+        </span>
+      </button>
     </div>
+  </header>
 
-    <button
-      id="openSettingsBtn"
-      class="settings"
-      type="button"
-      aria-label="Ayarlar"
-    >
-      <span class="material-symbols-outlined">
-        tune
-      </span>
-    </button>
-  </div>
-</header>
-
-<main>
-  <section class="intro">
-    <p class="kicker">
-      YENİ MASRAF
-    </p>
-  </section>
-
-  <p
-    id="syncStatus"
-    role="status"
-  >
-    Bağlantı kontrol ediliyor…
-  </p>
-
-  <form
-    id="expenseForm"
-    class="form-stack"
-  >
-    <section class="card accent">
-      <div class="card-head">
-        <div class="card-title">
-          <div class="card-icon">
-            <span class="material-symbols-outlined">
-              calendar_month
-            </span>
-          </div>
-
-          <h3>Tarih ve il</h3>
-        </div>
-
-        <span class="step">
-          01
-        </span>
-      </div>
-
-      <div class="fields">
-        <div class="field">
-          <label for="tarih">
-            Tarih
-          </label>
-
-          <div class="input-wrap">
-            <span class="material-symbols-outlined input-icon">
-              calendar_month
-            </span>
-
-            <input
-              id="tarih"
-              class="control icon"
-              type="date"
-              required
-            >
-          </div>
-        </div>
-
-        <div class="field">
-          <label for="sehir">
-            İl
-          </label>
-
-          <div class="input-wrap">
-            <span class="material-symbols-outlined input-icon">
-              location_on
-            </span>
-
-            <input
-              id="sehir"
-              class="control icon"
-              type="text"
-              autocomplete="off"
-              maxlength="100"
-              placeholder="İl ara..."
-              required
-            >
-          </div>
-
-          <ul
-            id="sehirList"
-            class="hidden"
-          ></ul>
-        </div>
-      </div>
-    </section>
-
-    <section class="card">
-      <div class="card-head">
-        <div class="card-title">
-          <div class="card-icon">
-            <span class="material-symbols-outlined">
-              payments
-            </span>
-          </div>
-
-          <h3>Masraf bilgisi</h3>
-        </div>
-
-        <span class="step">
-          02
-        </span>
-      </div>
-
-      <div class="fields">
-        <div class="field">
-          <label for="masrafTuru">
-            Masraf Türü
-          </label>
-
-          <div class="input-wrap">
-            <span class="material-symbols-outlined input-icon">
-              category
-            </span>
-
-            <select
-              id="masrafTuru"
-              class="control icon"
-              required
-            >
-              <option value="">
-                Masraf türünü seçin
-              </option>
-
-              <option value="yemek">
-                Yemek (Kendisi)
-              </option>
-
-              <option value="ikram">
-                İkram (Müşterisi)
-              </option>
-
-              <option value="yolOtopark">
-                Yol-Otopark
-              </option>
-
-              <option value="yakit">
-                Yakıt
-              </option>
-
-              <option value="konaklama">
-                Konaklama
-              </option>
-
-              <option value="diger">
-                Diğer
-              </option>
-
-              <option value="belgesiz">
-                Belgesiz Harcama
-              </option>
-            </select>
-
-            <span class="material-symbols-outlined select-arrow">
-              expand_more
-            </span>
-          </div>
-        </div>
-
-        <div class="field">
-          <label for="tutar">
-            Tutar
-          </label>
-
-          <div class="input-wrap">
-            <span class="material-symbols-outlined input-icon">
-              account_balance_wallet
-            </span>
-
-            <input
-              id="tutar"
-              class="control icon amount"
-              type="text"
-              inputmode="decimal"
-              autocomplete="off"
-              placeholder="0,00"
-              required
-            >
-
-            <span class="tl-suffix">
-              TL
-            </span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="card">
-      <div class="card-head">
-        <div class="card-title">
-          <div class="card-icon">
-            <span class="material-symbols-outlined">
-              description
-            </span>
-          </div>
-
-          <h3>Açıklama</h3>
-        </div>
-
-        <span class="step">
-          03
-        </span>
-      </div>
-
-      <div class="field">
-        <label for="aciklama">
-          Masraf Detayı
-        </label>
-
-        <textarea
-          id="aciklama"
-          class="control"
-          rows="4"
-          maxlength="1000"
-          placeholder="Masraf detayını yazın..."
-          required
-        ></textarea>
-      </div>
-    </section>
-
-    <button
-      id="submitBtn"
-      type="submit"
-      class="submit"
-    >
-      <span
-        id="btnIcon"
-        class="material-symbols-outlined"
-      >
-        add_circle
-      </span>
-
-      <span id="btnText">
-        Masrafı Kaydet
-      </span>
-
-      <span
-        id="btnSpinner"
-        class="spinner hidden"
-        aria-hidden="true"
-      ></span>
-    </button>
-
-    <section
-      class="card"
-      id="summaryCard"
-    >
-      <div class="card-head">
-        <div class="card-title">
-          <div class="card-icon">
-            <span class="material-symbols-outlined">
-              calculate
-            </span>
-          </div>
-
-          <h3>Alt toplamlar</h3>
-        </div>
-
-        <span class="step">
-          TOPLAM
-        </span>
-      </div>
-
-      <p
-        class="summary-total"
-        id="grandTotal"
-      >
-        0,00 TL
+  <main>
+    <section class="intro">
+      <p class="kicker">
+        YENİ MASRAF
       </p>
-
-      <div class="summary-grid">
-        <div class="summary-item">
-          <span>Yemek</span>
-          <strong id="sumYemek">
-            0,00 TL
-          </strong>
-        </div>
-
-        <div class="summary-item">
-          <span>İkram</span>
-          <strong id="sumIkram">
-            0,00 TL
-          </strong>
-        </div>
-
-        <div class="summary-item">
-          <span>Yol-Otopark</span>
-          <strong id="sumYolOtopark">
-            0,00 TL
-          </strong>
-        </div>
-
-        <div class="summary-item">
-          <span>Yakıt</span>
-          <strong id="sumYakit">
-            0,00 TL
-          </strong>
-        </div>
-
-        <div class="summary-item">
-          <span>Konaklama</span>
-          <strong id="sumKonaklama">
-            0,00 TL
-          </strong>
-        </div>
-
-        <div class="summary-item">
-          <span>Diğer</span>
-          <strong id="sumDiger">
-            0,00 TL
-          </strong>
-        </div>
-
-        <div class="summary-item">
-          <span>Belgesiz Harcama</span>
-          <strong id="sumBelgesiz">
-            0,00 TL
-          </strong>
-        </div>
-      </div>
     </section>
-  </form>
 
-  <p class="footer">
-    SEDAT DEMİR · MASRAF YÖNETİMİ
-  </p>
-</main>
+    <p
+      id="syncStatus"
+      role="status"
+    >
+      Bağlantı kontrol ediliyor…
+    </p>
+
+    <form
+      id="expenseForm"
+      class="form-stack"
+    >
+      <section class="card accent">
+        <div class="card-head">
+          <div class="card-title">
+            <div class="card-icon">
+              <span class="material-symbols-outlined">
+                calendar_month
+              </span>
+            </div>
+
+            <h3>Tarih ve il</h3>
+          </div>
+
+          <span class="step">
+            01
+          </span>
+        </div>
+
+        <div class="fields">
+          <div class="field">
+            <label for="tarih">
+              Tarih
+            </label>
+
+            <div class="input-wrap">
+              <span class="material-symbols-outlined input-icon">
+                calendar_month
+              </span>
+
+              <input
+                id="tarih"
+                class="control icon"
+                type="date"
+                required
+              >
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="sehir">
+              İl
+            </label>
+
+            <div class="input-wrap">
+              <span class="material-symbols-outlined input-icon">
+                location_on
+              </span>
+
+              <input
+                id="sehir"
+                class="control icon"
+                type="text"
+                autocomplete="off"
+                maxlength="100"
+                placeholder="İl ara..."
+                required
+              >
+            </div>
+
+            <ul
+              id="sehirList"
+              class="hidden"
+            ></ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="card-head">
+          <div class="card-title">
+            <div class="card-icon">
+              <span class="material-symbols-outlined">
+                payments
+              </span>
+            </div>
+
+            <h3>Masraf bilgisi</h3>
+          </div>
+
+          <span class="step">
+            02
+          </span>
+        </div>
+
+        <div class="fields">
+          <div class="field">
+            <label for="masrafTuru">
+              Masraf Türü
+            </label>
+
+            <div class="input-wrap">
+              <span class="material-symbols-outlined input-icon">
+                category
+              </span>
+
+              <select
+                id="masrafTuru"
+                class="control icon"
+                required
+              >
+                <option value="">
+                  Masraf türünü seçin
+                </option>
+
+                <option value="yemek">
+                  Yemek (Kendisi)
+                </option>
+
+                <option value="ikram">
+                  İkram (Müşterisi)
+                </option>
+
+                <option value="yolOtopark">
+                  Yol-Otopark
+                </option>
+
+                <option value="yakit">
+                  Yakıt
+                </option>
+
+                <option value="konaklama">
+                  Konaklama
+                </option>
+
+                <option value="diger">
+                  Diğer
+                </option>
+
+                <option value="belgesiz">
+                  Belgesiz Harcama
+                </option>
+              </select>
+
+              <span class="material-symbols-outlined select-arrow">
+                expand_more
+              </span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="tutar">
+              Tutar
+            </label>
+
+            <div class="input-wrap">
+              <span class="material-symbols-outlined input-icon">
+                account_balance_wallet
+              </span>
+
+              <input
+                id="tutar"
+                class="control icon amount"
+                type="text"
+                inputmode="decimal"
+                autocomplete="off"
+                placeholder="0,00"
+                required
+              >
+
+              <span class="tl-suffix">
+                TL
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="card-head">
+          <div class="card-title">
+            <div class="card-icon">
+              <span class="material-symbols-outlined">
+                description
+              </span>
+            </div>
+
+            <h3>Açıklama</h3>
+          </div>
+
+          <span class="step">
+            03
+          </span>
+        </div>
+
+        <div class="field">
+          <label for="aciklama">
+            Masraf Detayı
+          </label>
+
+          <textarea
+            id="aciklama"
+            class="control"
+            rows="4"
+            maxlength="1000"
+            placeholder="Masraf detayını yazın..."
+            required
+          ></textarea>
+        </div>
+      </section>
+
+      <button
+        id="submitBtn"
+        type="submit"
+        class="submit"
+      >
+        <span
+          id="btnIcon"
+          class="material-symbols-outlined"
+        >
+          add_circle
+        </span>
+
+        <span id="btnText">
+          Masrafı Kaydet
+        </span>
+
+        <span
+          id="btnSpinner"
+          class="spinner hidden"
+          aria-hidden="true"
+        ></span>
+      </button>
+
+      <section
+        class="card"
+        id="summaryCard"
+      >
+        <div class="card-head">
+          <div class="card-title">
+            <div class="card-icon">
+              <span class="material-symbols-outlined">
+                calculate
+              </span>
+            </div>
+
+            <h3>Alt toplamlar</h3>
+          </div>
+
+          <span class="step">
+            TOPLAM
+          </span>
+        </div>
+
+        <p
+          class="summary-total"
+          id="grandTotal"
+        >
+          0,00 TL
+        </p>
+
+        <div class="summary-grid">
+          <div class="summary-item">
+            <span>Yemek</span>
+            <strong id="sumYemek">
+              0,00 TL
+            </strong>
+          </div>
+
+          <div class="summary-item">
+            <span>İkram</span>
+            <strong id="sumIkram">
+              0,00 TL
+            </strong>
+          </div>
+
+          <div class="summary-item">
+            <span>Yol-Otopark</span>
+            <strong id="sumYolOtopark">
+              0,00 TL
+            </strong>
+          </div>
+
+          <div class="summary-item">
+            <span>Yakıt</span>
+            <strong id="sumYakit">
+              0,00 TL
+            </strong>
+          </div>
+
+          <div class="summary-item">
+            <span>Konaklama</span>
+            <strong id="sumKonaklama">
+              0,00 TL
+            </strong>
+          </div>
+
+          <div class="summary-item">
+            <span>Diğer</span>
+            <strong id="sumDiger">
+              0,00 TL
+            </strong>
+          </div>
+
+          <div class="summary-item">
+            <span>Belgesiz Harcama</span>
+            <strong id="sumBelgesiz">
+              0,00 TL
+            </strong>
+          </div>
+        </div>
+      </section>
+    </form>
+
+    <p class="footer">
+      SEDAT DEMİR · MASRAF YÖNETİMİ
+    </p>
+  </main>
 </div>
 
 <div
@@ -989,8 +993,7 @@ input[type="date"].control {
     <h2>Bağlantı Ayarları</h2>
 
     <p>
-      Masraf dosyasına bağlı Google Apps Script
-      /exec bağlantısını yapıştırın.
+      Masraf dosyasına bağlı Google Apps Script /exec bağlantısını yapıştırın.
     </p>
 
     <input
@@ -1053,29 +1056,16 @@ input[type="date"].control {
     aciklama:"Açıklama"
   };
 
-  const cities = (
-    "Adana|Adıyaman|Afyonkarahisar|Ağrı|" +
-    "Aksaray|Amasya|Ankara|Antalya|Artvin|" +
-    "Aydın|Balıkesir|Bartın|Batman|Bayburt|" +
-    "Bilecik|Bingöl|Bitlis|Bolu|Burdur|" +
-    "Bursa|Çanakkale|Çankırı|Çorum|Denizli|" +
-    "Diyarbakır|Düzce|Edirne|Elazığ|Erzincan|" +
-    "Erzurum|Eskişehir|Gaziantep|Giresun|" +
-    "Gümüşhane|Hakkari|Hatay|Iğdır|Isparta|" +
-    "İstanbul|İzmir|Kahramanmaraş|Karabük|" +
-    "Karaman|Kars|Kastamonu|Kayseri|Kırıkkale|" +
-    "Kırklareli|Kırşehir|Kilis|Kocaeli|Konya|" +
-    "Kütahya|Malatya|Manisa|Mardin|Mersin|" +
-    "Muğla|Muş|Nevşehir|Niğde|Ordu|Osmaniye|" +
-    "Rize|Sakarya|Samsun|Siirt|Sinop|Sivas|" +
-    "Şanlıurfa|Şırnak|Tekirdağ|Tokat|Trabzon|" +
-    "Tunceli|Uşak|Van|Yalova|Yozgat|Zonguldak"
-  )
-    .split("|")
-    .sort(
-      (a,b) =>
-        a.localeCompare(b,"tr")
-    );
+  const cities =
+    "Adana|Adıyaman|Afyonkarahisar|Ağrı|Aksaray|Amasya|Ankara|Antalya|Artvin|Aydın|Balıkesir|Bartın|Batman|Bayburt|Bilecik|Bingöl|Bitlis|Bolu|Burdur|Bursa|Çanakkale|Çankırı|Çorum|Denizli|Diyarbakır|Düzce|Edirne|Elazığ|Erzincan|Erzurum|Eskişehir|Gaziantep|Giresun|Gümüşhane|Hakkari|Hatay|Iğdır|Isparta|İstanbul|İzmir|Kahramanmaraş|Karabük|Karaman|Kars|Kastamonu|Kayseri|Kırıkkale|Kırklareli|Kırşehir|Kilis|Kocaeli|Konya|Kütahya|Malatya|Manisa|Mardin|Mersin|Muğla|Muş|Nevşehir|Niğde|Ordu|Osmaniye|Rize|Sakarya|Samsun|Siirt|Sinop|Sivas|Şanlıurfa|Şırnak|Tekirdağ|Tokat|Trabzon|Tunceli|Uşak|Van|Yalova|Yozgat|Zonguldak"
+      .split("|")
+      .sort(
+        (a,b) =>
+          a.localeCompare(
+            b,
+            "tr"
+          )
+      );
 
   const summaryIds = {
     yemek:"sumYemek",
@@ -1143,8 +1133,7 @@ input[type="date"].control {
       );
     } catch (_) {
       message(
-        "Cihaz hafızası kullanılamıyor. " +
-        "Bu oturum çalışmaya devam eder.",
+        "Cihaz hafızası kullanılamıyor. Bu oturum çalışmaya devam eder.",
         true
       );
     }
@@ -1183,11 +1172,10 @@ input[type="date"].control {
   function makeId() {
     if (
       window.crypto &&
-      typeof window.crypto
-        .randomUUID === "function"
+      typeof window.crypto.randomUUID ===
+        "function"
     ) {
-      return window.crypto
-        .randomUUID();
+      return window.crypto.randomUUID();
     }
 
     return (
@@ -1201,8 +1189,7 @@ input[type="date"].control {
   }
 
   function setToday() {
-    const today =
-      new Date();
+    const today = new Date();
 
     $("tarih").value =
       today.getFullYear() +
@@ -1218,13 +1205,9 @@ input[type="date"].control {
 
   function formattedDate() {
     const parts =
-      $("tarih")
-        .value
-        .split("-");
+      $("tarih").value.split("-");
 
-    if (
-      parts.length !== 3
-    ) {
+    if (parts.length !== 3) {
       throw new Error(
         "Tarih seçin."
       );
@@ -1247,17 +1230,14 @@ input[type="date"].control {
     if (raw.includes(",")) {
       raw = raw
         .replace(/\./g,"")
-        .replace(",", ".");
+        .replace(",",".");
     } else if (
-      /^\d{1,3}(\.\d{3})+$/
-        .test(raw)
+      /^\d{1,3}(\.\d{3})+$/.test(raw)
     ) {
-      raw =
-        raw.replace(/\./g,"");
+      raw = raw.replace(/\./g,"");
     }
 
-    const amount =
-      Number(raw);
+    const amount = Number(raw);
 
     return Number.isFinite(amount)
       ? amount
@@ -1279,9 +1259,7 @@ input[type="date"].control {
     );
   }
 
-  function renderSummary(
-    summary
-  ) {
+  function renderSummary(summary) {
     const categories =
       summary &&
       summary.categories
@@ -1294,22 +1272,21 @@ input[type="date"].control {
         summary.total
       );
 
-    Object.keys(
-      summaryIds
-    ).forEach(key => {
-      $(
-        summaryIds[key]
-      ).textContent =
-        formatTL(
-          categories[key]
-        );
-    });
+    Object
+      .keys(summaryIds)
+      .forEach(key => {
+        $(
+          summaryIds[key]
+        ).textContent =
+          formatTL(
+            categories[key]
+          );
+      });
   }
 
   function validUrl(url) {
-    return (
-      /^https:\/\/script\.google\.com\/macros\/s\/[^/]+\/exec$/
-        .test(url)
+    return /^https:\/\/script\.google\.com\/macros\/s\/[^/]+\/exec$/.test(
+      url
     );
   }
 
@@ -1328,11 +1305,10 @@ input[type="date"].control {
     const controller =
       new AbortController();
 
-    const timer =
-      setTimeout(
-        () => controller.abort(),
-        timeoutMs
-      );
+    const timer = setTimeout(
+      () => controller.abort(),
+      timeoutMs
+    );
 
     try {
       const query =
@@ -1365,13 +1341,10 @@ input[type="date"].control {
       let data;
 
       try {
-        data =
-          JSON.parse(raw);
+        data = JSON.parse(raw);
       } catch (_) {
         throw new Error(
-          "Sunucu JSON döndürmedi. " +
-          "Apps Script dağıtımını ve " +
-          "/exec adresini kontrol edin."
+          "Sunucu JSON döndürmedi. Apps Script dağıtımını ve /exec adresini kontrol edin."
         );
       }
 
@@ -1405,19 +1378,15 @@ input[type="date"].control {
         "AbortError"
       ) {
         throw new Error(
-          "Sunucu zaman aşımı. " +
-          "Bağlantıyı kontrol edin."
+          "Sunucu zaman aşımı. Bağlantıyı kontrol edin."
         );
       }
 
       if (
-        error instanceof
-        TypeError
+        error instanceof TypeError
       ) {
         throw new Error(
-          "Sunucuya erişilemiyor. " +
-          "İnternet veya Apps Script " +
-          "bağlantısını kontrol edin."
+          "Sunucuya erişilemiyor. İnternet veya Apps Script bağlantısını kontrol edin."
         );
       }
 
@@ -1433,8 +1402,7 @@ input[type="date"].control {
       API_VERSION
     ) {
       throw new Error(
-        "Apps Script eski veya farklı bir sürümde. " +
-        "Yeni masraf kodunu dağıtın."
+        "Apps Script eski veya farklı bir sürümde. Yeni masraf kodunu dağıtın."
       );
     }
   }
@@ -1461,8 +1429,7 @@ input[type="date"].control {
       renderSummary(data);
 
       message(
-        "Masraf formu hazır. " +
-        "Sıradaki kayıt no: " +
+        "Masraf formu hazır. Sıradaki kayıt no: " +
         data.nextNo
       );
     } catch (error) {
@@ -1536,33 +1503,32 @@ input[type="date"].control {
       busy ||
       pending
     ) {
-      closeCityList();
-      return;
+      return closeCityList();
     }
 
     const matches =
       cities
-        .filter(
-          city =>
-            searchKey(city)
-              .includes(query)
+        .filter(city =>
+          searchKey(city)
+            .includes(query)
         )
         .slice(0,30);
 
     matches.forEach(city => {
       const item =
-        document.createElement(
-          "li"
-        );
+        document.createElement("li");
 
       const button =
         document.createElement(
           "button"
         );
 
-      button.type = "button";
+      button.type =
+        "button";
+
       button.className =
         "city-choice";
+
       button.textContent =
         city;
 
@@ -1635,8 +1601,7 @@ input[type="date"].control {
         pending.aciklama || "";
 
       message(
-        "Önceki masraf kaydının sonucu belirsiz. " +
-        "Aynı düğmeyle kontrol edin.",
+        "Önceki masraf kaydının sonucu belirsiz. Aynı düğmeyle kontrol edin.",
         true
       );
     }
@@ -1688,9 +1653,14 @@ input[type="date"].control {
       null
     );
 
-    $("masrafTuru").value = "";
-    $("tutar").value = "";
-    $("aciklama").value = "";
+    $("masrafTuru").value =
+      "";
+
+    $("tutar").value =
+      "";
+
+    $("aciklama").value =
+      "";
 
     message(
       "Doğrulandı: " +
@@ -1703,7 +1673,9 @@ input[type="date"].control {
   }
 
   async function submit() {
-    if (busy) return;
+    if (busy) {
+      return;
+    }
 
     if (!pending) {
       for (
@@ -1730,7 +1702,9 @@ input[type="date"].control {
         );
 
       if (
-        !Number.isFinite(amount) ||
+        !Number.isFinite(
+          amount
+        ) ||
         amount <= 0
       ) {
         message(
@@ -1756,19 +1730,24 @@ input[type="date"].control {
     try {
       if (!pending) {
         pending = {
-          requestId:makeId(),
-          tarih:formattedDate(),
-          sehir:clean(
-            $("sehir").value
-          ),
+          requestId:
+            makeId(),
+          tarih:
+            formattedDate(),
+          sehir:
+            clean(
+              $("sehir").value
+            ),
           masrafTuru:
             $("masrafTuru").value,
-          tutar:parseAmount(
-            $("tutar").value
-          ),
-          aciklama:clean(
-            $("aciklama").value
-          )
+          tutar:
+            parseAmount(
+              $("tutar").value
+            ),
+          aciklama:
+            clean(
+              $("aciklama").value
+            )
         };
 
         save(
@@ -1885,8 +1864,7 @@ input[type="date"].control {
               " "
             : ""
         ) +
-        "Kayıt henüz doğrulanamadı. " +
-        "Form korundu; aynı düğmeyle tekrar kontrol edin.",
+        "Kayıt henüz doğrulanamadı. Form korundu; aynı düğmeyle tekrar kontrol edin.",
         true
       );
     } catch (error) {
@@ -1966,8 +1944,7 @@ input[type="date"].control {
       "input",
       () => {
         $("tutar").value =
-          $("tutar")
-            .value
+          $("tutar").value
             .replace(
               /[^0-9.,]/g,
               ""
@@ -2010,7 +1987,9 @@ input[type="date"].control {
     .addEventListener(
       "click",
       async () => {
-        if (busy) return;
+        if (busy) {
+          return;
+        }
 
         const url =
           $("scriptUrlInput")
