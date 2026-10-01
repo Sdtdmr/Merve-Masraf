@@ -8,240 +8,994 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Masraf">
 <title>Masraf Asistanı</title>
-<link rel="manifest" href="manifest.json">
-<script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+
 <style>
-:root{--bg:#0d0f10;--card:#17191b;--field:#101214;--green:#18c99a;--white:#f5f6f4;--muted:#9a9ca2;--line:#2b2e31;--amber:#f4be7c}
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html{background:var(--bg);color-scheme:dark}
-body{margin:0;min-height:100dvh;overflow-x:hidden;background:radial-gradient(circle at 0 0,rgba(12,112,82,.18),transparent 25rem),var(--bg);color:var(--white);font-family:Manrope,sans-serif;padding-bottom:calc(28px + env(safe-area-inset-bottom))}
-button,input,textarea,select{font:inherit}
-button{cursor:pointer}
-.hidden{display:none!important}
-.flex{display:flex!important}
-.app{width:100%;max-width:480px;margin:0 auto;padding:0 16px}
-.topbar{position:sticky;top:0;z-index:40;margin:0 -16px;padding:calc(12px + env(safe-area-inset-top)) 16px 12px;background:rgba(13,15,16,.9);border-bottom:1px solid rgba(255,255,255,.05);backdrop-filter:blur(18px)}
-.topbar-inner{display:flex;align-items:center;justify-content:space-between;max-width:448px;margin:0 auto}
-.brand{display:flex;align-items:center;gap:11px}
-.brand-mark{width:40px;height:40px;display:grid;place-items:center;flex-shrink:0;border:1px solid rgba(24,201,154,.55);border-radius:50%;background:rgba(24,201,154,.07);color:var(--green);font-size:13px;font-weight:800}
-.brand h1{margin:0;font-size:16px;line-height:1.2}
-.brand p{margin:3px 0 0;color:var(--muted);font-size:9px;font-weight:600;letter-spacing:.14em}
-.settings{width:40px;height:40px;display:grid;place-items:center;flex-shrink:0;border:1px solid var(--line);border-radius:50%;background:var(--card);color:#c8c9cc}
-.settings:active{transform:scale(.94);color:var(--green);border-color:rgba(24,201,154,.5)}
-.intro{padding:27px 0 20px}
-.kicker{margin:0 0 8px;color:var(--green);font-size:10px;font-weight:800;letter-spacing:.18em}
-.form-stack{display:flex;flex-direction:column;gap:14px}
-.card{width:100%;padding:19px 16px;border:1px solid var(--line);border-radius:20px;background:linear-gradient(145deg,rgba(25,27,29,.98),rgba(20,22,24,.98));box-shadow:0 18px 42px rgba(0,0,0,.17)}
-.card.accent{border-color:rgba(24,201,154,.5)}
-.card.amber{border-color:rgba(244,190,124,.4)}
-.card-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:17px}
-.card-title{display:flex;align-items:center;gap:10px}
-.card-icon{width:34px;height:34px;display:grid;place-items:center;flex-shrink:0;border:1px solid rgba(24,201,154,.28);border-radius:12px;background:rgba(24,201,154,.07);color:var(--green)}
-.card-icon.amber-icon{border-color:rgba(244,190,124,.28);background:rgba(244,190,124,.07);color:var(--amber)}
-.card-icon span{font-size:18px}
-.card h3{margin:0;font-size:15px}
-.step{padding:5px 8px;border:1px solid rgba(24,201,154,.24);border-radius:999px;color:var(--green);font-size:9px;font-weight:800;letter-spacing:.12em}
-.fields{display:flex;flex-direction:column;gap:14px}
-.field{position:relative;display:flex;flex-direction:column;gap:7px}
-.label-row{display:flex;align-items:center;justify-content:space-between;padding:0 2px}
-.field label{color:#aaaeb2;font-size:12px;font-weight:650}
-.input-wrap{position:relative}
-.input-icon{position:absolute;top:50%;left:14px;z-index:2;color:#668078;font-size:19px;pointer-events:none;transform:translateY(-50%)}
-.control{width:100%;min-height:52px;padding:13px 14px!important;border:1px solid #303337!important;border-radius:14px!important;outline:none!important;background:var(--field)!important;color:var(--white)!important;box-shadow:none!important}
-.control.icon{padding-left:43px!important}
-.control::placeholder{color:#5f6267}
-.control:focus{border-color:var(--green)!important;box-shadow:0 0 0 4px rgba(24,201,154,.08)!important}
-textarea.control{min-height:98px;resize:none}
-select.control{appearance:none;-webkit-appearance:none;cursor:pointer}
-.select-wrap{position:relative}
-.select-wrap::after{content:"expand_more";font-family:"Material Symbols Outlined";position:absolute;top:50%;right:14px;transform:translateY(-50%);color:#668078;font-size:20px;pointer-events:none}
+:root {
+  --bg:#0d0f10;
+  --card:#17191b;
+  --field:#101214;
+  --green:#18c99a;
+  --white:#f5f6f4;
+  --muted:#9a9ca2;
+  --line:#2b2e31;
+  --error:#ff9e9e;
+}
 
-.tutar-wrap{position:relative}
-.tutar-suffix{position:absolute;top:50%;right:14px;transform:translateY(-50%);color:var(--green);font-size:13px;font-weight:800;pointer-events:none}
-#tutar{padding-right:44px!important}
+* {
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
 
-.submit{width:100%;min-height:56px;display:flex;align-items:center;justify-content:center;gap:9px;border:0;border-radius:16px;background:linear-gradient(110deg,#1ad09d,#10b986);color:#061510;font-size:14px;font-weight:800;box-shadow:0 14px 32px rgba(11,185,132,.2)}
-.submit:active{transform:scale(.985)}
-.submit:disabled{opacity:.65;cursor:wait}
-.footer{margin:19px 0 0;color:#55585c;font-size:9px;font-weight:700;text-align:center;letter-spacing:.14em}
+html {
+  background:var(--bg);
+  color-scheme:dark;
+}
 
-/* Özet kartı */
-.summary-card{display:flex;flex-direction:column;gap:8px}
-.summary-row{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.03)}
-.summary-row:nth-child(odd){background:rgba(255,255,255,.05)}
-.summary-label{font-size:12px;color:var(--muted);font-weight:600}
-.summary-val{font-size:13px;font-weight:800;color:var(--white)}
-.summary-val.nonzero{color:var(--green)}
-.summary-total{display:flex;align-items:center;justify-content:space-between;padding:13px 12px;border-top:1px solid var(--line);margin-top:4px}
-.summary-total .summary-label{font-size:13px;color:var(--white);font-weight:700}
-.summary-total .summary-val{font-size:16px;color:var(--green)}
+body {
+  margin:0;
+  min-height:100dvh;
+  overflow-x:hidden;
+  background:
+    radial-gradient(
+      circle at 0 0,
+      rgba(12,112,82,.18),
+      transparent 25rem
+    ),
+    var(--bg);
+  color:var(--white);
+  font-family:Manrope,sans-serif;
+  padding-bottom:
+    calc(
+      28px +
+      env(safe-area-inset-bottom)
+    );
+}
 
-/* Settings modal */
-#settingsModal{position:fixed;inset:0;z-index:80;align-items:flex-end;justify-content:center;background:rgba(2,4,5,.78);backdrop-filter:blur(8px)}
-#settingsCard{width:100%;max-width:480px;padding:22px 18px calc(22px + env(safe-area-inset-bottom));border:1px solid rgba(24,201,154,.32);border-bottom:0;border-radius:24px 24px 0 0;background:#181a1b}
-#settingsCard h2{margin:0 0 8px}
-#settingsCard p{margin:0 0 16px;color:var(--muted)}
-.modal-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
-.cancel,.save{min-height:47px;border-radius:14px;font-weight:700}
-.cancel{border:1px solid var(--line);background:#111314;color:#a9abad}
-.save{border:0;background:var(--green);color:#07140f}
+button,
+input,
+select,
+textarea {
+  font:inherit;
+}
 
-/* Flash */
-#flashOverlay{position:fixed;inset:0;z-index:200;pointer-events:none;background:rgba(24,201,154,0);transition:background .15s ease}
-#flashOverlay.flash{background:rgba(24,201,154,.22)}
+button {
+  cursor:pointer;
+}
 
-#syncStatus{font-size:12px;line-height:1.6;margin:10px 0;color:#a9c5ba;overflow-wrap:anywhere}
+.hidden {
+  display:none!important;
+}
 
-#tutar, #il {text-transform:uppercase}
+.flex {
+  display:flex!important;
+}
+
+.app {
+  width:100%;
+  max-width:480px;
+  margin:0 auto;
+  padding:0 16px;
+}
+
+.topbar {
+  position:sticky;
+  top:0;
+  z-index:40;
+  margin:0 -16px;
+  padding:
+    calc(
+      12px +
+      env(safe-area-inset-top)
+    )
+    16px
+    12px;
+  background:rgba(13,15,16,.9);
+  border-bottom:
+    1px solid
+    rgba(255,255,255,.05);
+  backdrop-filter:blur(18px);
+}
+
+.topbar-inner {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  max-width:448px;
+  margin:0 auto;
+}
+
+.brand {
+  display:flex;
+  align-items:center;
+  gap:11px;
+}
+
+.brand-mark {
+  width:40px;
+  height:40px;
+  display:grid;
+  place-items:center;
+  flex-shrink:0;
+  border:
+    1px solid
+    rgba(24,201,154,.55);
+  border-radius:50%;
+  background:
+    rgba(24,201,154,.07);
+  color:var(--green);
+  font-size:13px;
+  font-weight:800;
+}
+
+.brand h1 {
+  margin:0;
+  font-size:16px;
+  line-height:1.2;
+}
+
+.brand p {
+  margin:3px 0 0;
+  color:var(--muted);
+  font-size:9px;
+  font-weight:600;
+  letter-spacing:.14em;
+}
+
+.settings {
+  width:40px;
+  height:40px;
+  display:grid;
+  place-items:center;
+  flex-shrink:0;
+  border:
+    1px solid
+    var(--line);
+  border-radius:50%;
+  background:var(--card);
+  color:#c8c9cc;
+}
+
+.settings:active {
+  transform:scale(.94);
+  color:var(--green);
+  border-color:
+    rgba(24,201,154,.5);
+}
+
+.intro {
+  padding:27px 0 20px;
+}
+
+.kicker {
+  margin:0;
+  color:var(--green);
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.18em;
+}
+
+#syncStatus {
+  margin:0 0 14px;
+  padding:11px 13px;
+  border:
+    1px solid
+    rgba(255,255,255,.06);
+  border-radius:12px;
+  background:
+    rgba(255,255,255,.025);
+  color:#a9c5ba;
+  font-size:12px;
+  line-height:1.5;
+  overflow-wrap:anywhere;
+}
+
+.form-stack {
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+.card {
+  width:100%;
+  padding:19px 16px;
+  border:
+    1px solid
+    var(--line);
+  border-radius:20px;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(25,27,29,.98),
+      rgba(20,22,24,.98)
+    );
+  box-shadow:
+    0 18px 42px
+    rgba(0,0,0,.17);
+}
+
+.card.accent {
+  border-color:
+    rgba(24,201,154,.5);
+}
+
+.card-head {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:17px;
+}
+
+.card-title {
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.card-icon {
+  width:34px;
+  height:34px;
+  display:grid;
+  place-items:center;
+  flex-shrink:0;
+  border:
+    1px solid
+    rgba(24,201,154,.28);
+  border-radius:12px;
+  background:
+    rgba(24,201,154,.07);
+  color:var(--green);
+}
+
+.card-icon span {
+  font-size:18px;
+}
+
+.card h3 {
+  margin:0;
+  font-size:15px;
+}
+
+.step {
+  padding:5px 8px;
+  border:
+    1px solid
+    rgba(24,201,154,.24);
+  border-radius:999px;
+  color:var(--green);
+  font-size:9px;
+  font-weight:800;
+  letter-spacing:.12em;
+}
+
+.fields {
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+.field {
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+}
+
+.field label {
+  padding:0 2px;
+  color:#aaaeb2;
+  font-size:12px;
+  font-weight:650;
+}
+
+.input-wrap {
+  position:relative;
+}
+
+.input-icon {
+  position:absolute;
+  top:50%;
+  left:14px;
+  z-index:2;
+  color:#668078;
+  font-size:19px;
+  pointer-events:none;
+  transform:translateY(-50%);
+}
+
+.control {
+  width:100%;
+  min-height:52px;
+  padding:13px 14px;
+  border:
+    1px solid
+    #303337;
+  border-radius:14px;
+  outline:none;
+  background:var(--field);
+  color:var(--white);
+  box-shadow:none;
+}
+
+.control.icon {
+  padding-left:43px;
+}
+
+.control.amount {
+  padding-right:54px;
+}
+
+.control::placeholder {
+  color:#5f6267;
+}
+
+.control:focus {
+  border-color:var(--green);
+  box-shadow:
+    0 0 0 4px
+    rgba(24,201,154,.08);
+}
+
+.control:disabled {
+  opacity:.7;
+}
+
+select.control {
+  appearance:none;
+  padding-right:42px;
+}
+
+.select-arrow {
+  position:absolute;
+  top:50%;
+  right:14px;
+  color:#668078;
+  pointer-events:none;
+  transform:translateY(-50%);
+}
+
+.tl-suffix {
+  position:absolute;
+  top:50%;
+  right:15px;
+  color:var(--green);
+  font-size:13px;
+  font-weight:800;
+  pointer-events:none;
+  transform:translateY(-50%);
+}
+
+textarea.control {
+  min-height:105px;
+  resize:none;
+}
+
+#sehirList {
+  position:absolute;
+  top:100%;
+  left:0;
+  right:0;
+  z-index:55;
+  max-height:220px;
+  overflow:auto;
+  padding:5px;
+  margin:6px 0 0;
+  list-style:none;
+  background:#191c1d;
+  border:
+    1px solid
+    #337a66;
+  border-radius:14px;
+  box-shadow:
+    0 15px 35px #0008;
+}
+
+#sehirList li {
+  padding:0;
+}
+
+.city-choice {
+  display:block;
+  width:100%;
+  padding:13px;
+  text-align:left;
+  border:0;
+  border-radius:9px;
+  background:transparent;
+  color:#eee;
+  font-size:14px;
+}
+
+.city-choice:hover,
+.city-choice:focus {
+  background:#23483d;
+  outline:
+    2px solid
+    var(--green);
+  outline-offset:-2px;
+}
+
+.submit {
+  width:100%;
+  min-height:56px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  border:0;
+  border-radius:16px;
+  background:
+    linear-gradient(
+      110deg,
+      #1ad09d,
+      #10b986
+    );
+  color:#061510;
+  font-size:14px;
+  font-weight:800;
+  box-shadow:
+    0 14px 32px
+    rgba(11,185,132,.2);
+}
+
+.submit:active {
+  transform:scale(.985);
+}
+
+.submit:disabled {
+  opacity:.65;
+  cursor:wait;
+}
+
+.spinner {
+  width:20px;
+  height:20px;
+  border:
+    3px solid
+    rgba(6,21,16,.25);
+  border-top-color:#061510;
+  border-radius:50%;
+  animation:
+    spin .8s linear infinite;
+}
+
+.summary-total {
+  margin:0 0 15px;
+  color:var(--green);
+  font-size:27px;
+  font-weight:800;
+  letter-spacing:-.03em;
+}
+
+.summary-grid {
+  display:grid;
+  grid-template-columns:
+    1fr 1fr;
+  gap:8px;
+}
+
+.summary-item {
+  min-width:0;
+  padding:11px;
+  border:
+    1px solid
+    rgba(255,255,255,.06);
+  border-radius:12px;
+  background:
+    rgba(255,255,255,.025);
+}
+
+.summary-item span {
+  display:block;
+  color:#888c90;
+  font-size:9px;
+  font-weight:700;
+  line-height:1.35;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+}
+
+.summary-item strong {
+  display:block;
+  margin-top:5px;
+  color:#e8e9e7;
+  font-size:13px;
+  overflow-wrap:anywhere;
+}
+
+.footer {
+  margin:19px 0 0;
+  color:#55585c;
+  font-size:9px;
+  font-weight:700;
+  text-align:center;
+  letter-spacing:.14em;
+}
+
+#settingsModal {
+  position:fixed;
+  inset:0;
+  z-index:80;
+  align-items:flex-end;
+  justify-content:center;
+  background:rgba(2,4,5,.78);
+  backdrop-filter:blur(8px);
+}
+
+#settingsCard {
+  width:100%;
+  max-width:480px;
+  padding:
+    22px
+    18px
+    calc(
+      22px +
+      env(safe-area-inset-bottom)
+    );
+  border:
+    1px solid
+    rgba(24,201,154,.32);
+  border-bottom:0;
+  border-radius:
+    24px 24px 0 0;
+  background:#181a1b;
+}
+
+#settingsCard h2 {
+  margin:0 0 8px;
+}
+
+#settingsCard p {
+  margin:0 0 16px;
+  color:var(--muted);
+  font-size:13px;
+}
+
+.modal-actions {
+  display:grid;
+  grid-template-columns:
+    1fr 1fr;
+  gap:10px;
+  margin-top:18px;
+}
+
+.cancel,
+.save {
+  min-height:47px;
+  border-radius:14px;
+  font-weight:700;
+}
+
+.cancel {
+  border:
+    1px solid
+    var(--line);
+  background:#111314;
+  color:#a9abad;
+}
+
+.save {
+  border:0;
+  background:var(--green);
+  color:#07140f;
+}
+
+@keyframes spin {
+  to {
+    transform:rotate(360deg);
+  }
+}
+
+@media (max-width:360px) {
+  .summary-grid {
+    grid-template-columns:1fr;
+  }
+}
+
+@media (
+  prefers-reduced-motion:reduce
+) {
+  * {
+    animation:none!important;
+    transition:none!important;
+  }
+}
 </style>
 </head>
+
 <body>
-
-<div id="flashOverlay"></div>
-
 <div class="app">
+
 <header class="topbar">
   <div class="topbar-inner">
     <div class="brand">
-      <div class="brand-mark">SD</div>
+      <div class="brand-mark">
+        SD
+      </div>
+
       <div>
         <h1>Masraf Asistanı</h1>
         <p>KİŞİSEL ÇALIŞMA ALANI</p>
       </div>
     </div>
-    <button id="openSettingsBtn" class="settings" type="button" aria-label="Ayarlar">
-      <span class="material-symbols-outlined">tune</span>
+
+    <button
+      id="openSettingsBtn"
+      class="settings"
+      type="button"
+      aria-label="Ayarlar"
+    >
+      <span class="material-symbols-outlined">
+        tune
+      </span>
     </button>
   </div>
 </header>
 
 <main>
   <section class="intro">
-    <p class="kicker">YENİ MASRAF</p>
+    <p class="kicker">
+      YENİ MASRAF
+    </p>
   </section>
 
-  <form id="masrafForm" class="form-stack">
+  <p
+    id="syncStatus"
+    role="status"
+  >
+    Bağlantı kontrol ediliyor…
+  </p>
 
-    <!-- KART 1: Temel Bilgiler -->
+  <form
+    id="expenseForm"
+    class="form-stack"
+  >
     <section class="card accent">
       <div class="card-head">
         <div class="card-title">
-          <div class="card-icon"><span class="material-symbols-outlined">calendar_month</span></div>
-          <h3>Temel bilgiler</h3>
+          <div class="card-icon">
+            <span class="material-symbols-outlined">
+              calendar_month
+            </span>
+          </div>
+
+          <h3>Tarih ve il</h3>
         </div>
-        <span class="step">01</span>
+
+        <span class="step">
+          01
+        </span>
       </div>
+
       <div class="fields">
         <div class="field">
-          <label for="tarih">Tarih</label>
+          <label for="tarih">
+            Tarih
+          </label>
+
           <div class="input-wrap">
-            <span class="material-symbols-outlined input-icon">calendar_month</span>
-            <input id="tarih" class="control icon" type="date">
+            <span class="material-symbols-outlined input-icon">
+              calendar_month
+            </span>
+
+            <input
+              id="tarih"
+              class="control icon"
+              type="date"
+              required
+            >
           </div>
         </div>
+
         <div class="field">
-          <label for="il">İl</label>
+          <label for="sehir">
+            İl
+          </label>
+
           <div class="input-wrap">
-            <span class="material-symbols-outlined input-icon">location_on</span>
-            <input id="il" class="control icon" type="text" placeholder="Şehir yazın..." autocomplete="off">
+            <span class="material-symbols-outlined input-icon">
+              location_on
+            </span>
+
+            <input
+              id="sehir"
+              class="control icon"
+              type="text"
+              autocomplete="off"
+              maxlength="100"
+              placeholder="İl ara..."
+              required
+            >
           </div>
-          <ul id="ilList"></ul>
+
+          <ul
+            id="sehirList"
+            class="hidden"
+          ></ul>
         </div>
       </div>
     </section>
 
-    <!-- KART 2: Masraf Türü ve Tutar -->
     <section class="card">
       <div class="card-head">
         <div class="card-title">
-          <div class="card-icon"><span class="material-symbols-outlined">receipt_long</span></div>
-          <h3>Masraf türü ve tutar</h3>
+          <div class="card-icon">
+            <span class="material-symbols-outlined">
+              payments
+            </span>
+          </div>
+
+          <h3>Masraf bilgisi</h3>
         </div>
-        <span class="step">02</span>
+
+        <span class="step">
+          02
+        </span>
       </div>
+
       <div class="fields">
         <div class="field">
-          <label for="tur">Masraf Türü</label>
-          <div class="select-wrap">
-            <select id="tur" class="control">
-              <option value="">— Seçiniz —</option>
-              <option value="YEMEK (KENDİSİ)">Yemek (Kendisi)</option>
-              <option value="İKRAM (MÜŞTERİSİ)">İkram (Müşterisi)</option>
-              <option value="YOL-OTOPARK">Yol - Otopark</option>
-              <option value="YAKIT">Yakıt</option>
-              <option value="KONAKLAMA">Konaklama</option>
-              <option value="DİĞER">Diğer</option>
-              <option value="BELGESİZ HARCAMA">Belgesiz Harcama</option>
+          <label for="masrafTuru">
+            Masraf Türü
+          </label>
+
+          <div class="input-wrap">
+            <span class="material-symbols-outlined input-icon">
+              category
+            </span>
+
+            <select
+              id="masrafTuru"
+              class="control icon"
+              required
+            >
+              <option value="">
+                Masraf türünü seçin
+              </option>
+
+              <option value="yemek">
+                Yemek (Kendisi)
+              </option>
+
+              <option value="ikram">
+                İkram (Müşterisi)
+              </option>
+
+              <option value="yolOtopark">
+                Yol-Otopark
+              </option>
+
+              <option value="yakit">
+                Yakıt
+              </option>
+
+              <option value="konaklama">
+                Konaklama
+              </option>
+
+              <option value="diger">
+                Diğer
+              </option>
+
+              <option value="belgesiz">
+                Belgesiz Harcama
+              </option>
             </select>
+
+            <span class="material-symbols-outlined select-arrow">
+              expand_more
+            </span>
           </div>
         </div>
+
         <div class="field">
-          <label for="tutar">Tutar</label>
-          <div class="tutar-wrap">
-            <input id="tutar" class="control" type="number" min="0" step="0.01" placeholder="0.00">
-            <span class="tutar-suffix">TL</span>
+          <label for="tutar">
+            Tutar
+          </label>
+
+          <div class="input-wrap">
+            <span class="material-symbols-outlined input-icon">
+              account_balance_wallet
+            </span>
+
+            <input
+              id="tutar"
+              class="control icon amount"
+              type="text"
+              inputmode="decimal"
+              autocomplete="off"
+              placeholder="0,00"
+              required
+            >
+
+            <span class="tl-suffix">
+              TL
+            </span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- KART 3: Açıklama -->
     <section class="card">
       <div class="card-head">
         <div class="card-title">
-          <div class="card-icon amber-icon"><span class="material-symbols-outlined">edit_note</span></div>
+          <div class="card-icon">
+            <span class="material-symbols-outlined">
+              description
+            </span>
+          </div>
+
           <h3>Açıklama</h3>
         </div>
-        <span class="step">03</span>
+
+        <span class="step">
+          03
+        </span>
       </div>
-      <div class="fields">
-        <div class="field">
-          <textarea id="aciklama" class="control" rows="3" placeholder="Masraf detayını buraya girin..."></textarea>
-        </div>
+
+      <div class="field">
+        <label for="aciklama">
+          Masraf Detayı
+        </label>
+
+        <textarea
+          id="aciklama"
+          class="control"
+          rows="4"
+          maxlength="1000"
+          placeholder="Masraf detayını yazın..."
+          required
+        ></textarea>
       </div>
     </section>
 
-    <!-- KART 4: Dönem Özeti -->
-    <section class="card amber">
-      <div class="card-head">
-        <div class="card-title">
-          <div class="card-icon amber-icon"><span class="material-symbols-outlined">bar_chart</span></div>
-          <h3>Dönem özeti</h3>
-        </div>
-        <button type="button" id="refreshBtn" style="background:transparent;border:0;color:var(--muted);display:flex;align-items:center;gap:4px;font-size:11px;font-weight:700;">
-          <span class="material-symbols-outlined" style="font-size:16px">refresh</span>YENILE
-        </button>
-      </div>
-      <div class="summary-card" id="summaryCard">
-        <div class="summary-row"><span class="summary-label">Yükleniyor…</span></div>
-      </div>
-    </section>
+    <button
+      id="submitBtn"
+      type="submit"
+      class="submit"
+    >
+      <span
+        id="btnIcon"
+        class="material-symbols-outlined"
+      >
+        add_circle
+      </span>
 
-    <button id="submitBtn" type="button" class="submit">
-      <span id="btnIcon" class="material-symbols-outlined">add_circle</span>
-      <span id="btnText">Masrafı Kaydet</span>
-      <svg id="btnSpinner" class="hidden animate-spin h-5 w-5" fill="none" viewBox="0 0 24 24">
-        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-      </svg>
+      <span id="btnText">
+        Masrafı Kaydet
+      </span>
+
+      <span
+        id="btnSpinner"
+        class="spinner hidden"
+        aria-hidden="true"
+      ></span>
     </button>
 
+    <section
+      class="card"
+      id="summaryCard"
+    >
+      <div class="card-head">
+        <div class="card-title">
+          <div class="card-icon">
+            <span class="material-symbols-outlined">
+              calculate
+            </span>
+          </div>
+
+          <h3>Alt toplamlar</h3>
+        </div>
+
+        <span class="step">
+          TOPLAM
+        </span>
+      </div>
+
+      <p
+        class="summary-total"
+        id="grandTotal"
+      >
+        0,00 TL
+      </p>
+
+      <div class="summary-grid">
+        <div class="summary-item">
+          <span>Yemek</span>
+          <strong id="sumYemek">
+            0,00 TL
+          </strong>
+        </div>
+
+        <div class="summary-item">
+          <span>İkram</span>
+          <strong id="sumIkram">
+            0,00 TL
+          </strong>
+        </div>
+
+        <div class="summary-item">
+          <span>Yol-Otopark</span>
+          <strong id="sumYolOtopark">
+            0,00 TL
+          </strong>
+        </div>
+
+        <div class="summary-item">
+          <span>Yakıt</span>
+          <strong id="sumYakit">
+            0,00 TL
+          </strong>
+        </div>
+
+        <div class="summary-item">
+          <span>Konaklama</span>
+          <strong id="sumKonaklama">
+            0,00 TL
+          </strong>
+        </div>
+
+        <div class="summary-item">
+          <span>Diğer</span>
+          <strong id="sumDiger">
+            0,00 TL
+          </strong>
+        </div>
+
+        <div class="summary-item">
+          <span>Belgesiz Harcama</span>
+          <strong id="sumBelgesiz">
+            0,00 TL
+          </strong>
+        </div>
+      </div>
+    </section>
   </form>
-  <p class="footer">SEDAT DEMİR · MASRAF YÖNETİMİ</p>
+
+  <p class="footer">
+    SEDAT DEMİR · MASRAF YÖNETİMİ
+  </p>
 </main>
 </div>
 
-<!-- Settings Modal -->
-<div id="settingsModal" class="hidden flex-col">
+<div
+  id="settingsModal"
+  class="hidden"
+>
   <div id="settingsCard">
-    <h2>Ayarlar</h2>
-    <p>Google Apps Script bağlantısını buraya yapıştırın.</p>
-    <input type="text" id="scriptUrlInput" class="control" placeholder="https://script.google.com/macros/s/.../exec">
+    <h2>Bağlantı Ayarları</h2>
+
+    <p>
+      Masraf dosyasına bağlı Google Apps Script
+      /exec bağlantısını yapıştırın.
+    </p>
+
+    <input
+      type="text"
+      id="scriptUrlInput"
+      class="control"
+      autocomplete="off"
+      placeholder="https://script.google.com/macros/s/.../exec"
+    >
+
     <div class="modal-actions">
-      <button type="button" id="closeSettingsBtn" class="cancel">İptal</button>
-      <button type="button" id="saveSettingsBtn" class="save">Kaydet</button>
+      <button
+        type="button"
+        id="closeSettingsBtn"
+        class="cancel"
+      >
+        İptal
+      </button>
+
+      <button
+        type="button"
+        id="saveSettingsBtn"
+        class="save"
+      >
+        Kaydet
+      </button>
     </div>
   </div>
 </div>
@@ -250,247 +1004,1091 @@ select.control{appearance:none;-webkit-appearance:none;cursor:pointer}
 (() => {
   "use strict";
 
-  const $ = id => document.getElementById(id);
-  const flash = $("flashOverlay");
+  const $ = id =>
+    document.getElementById(id);
 
-  function showFlash() {
-    flash.classList.add("flash");
-    setTimeout(() => flash.classList.remove("flash"), 600);
-  }
+  const API_VERSION =
+    "expense-form-1";
+
+  const URL_KEY =
+    "expenseScriptUrl";
+
+  const CITY_KEY =
+    "expenseLastCity";
+
+  const fields = [
+    "tarih",
+    "sehir",
+    "masrafTuru",
+    "tutar",
+    "aciklama"
+  ];
+
+  const required = {
+    tarih:"Tarih",
+    sehir:"İl",
+    masrafTuru:"Masraf türü",
+    tutar:"Tutar",
+    aciklama:"Açıklama"
+  };
 
   const cities = (
-    "Adana|Adıyaman|Afyonkarahisar|Ağrı|Aksaray|Amasya|Ankara|Antalya|Artvin|Aydın|" +
-    "Balıkesir|Bartın|Batman|Bayburt|Bilecik|Bingöl|Bitlis|Bolu|Burdur|Bursa|" +
-    "Çanakkale|Çankırı|Çorum|Denizli|Diyarbakır|Düzce|Edirne|Elazığ|Erzincan|" +
-    "Erzurum|Eskişehir|Gaziantep|Giresun|Gümüşhane|Hakkari|Hatay|Iğdır|Isparta|" +
-    "İstanbul|İzmir|Kahramanmaraş|Karabük|Karaman|Kars|Kastamonu|Kayseri|Kırıkkale|" +
-    "Kırklareli|Kırşehir|Kilis|Kocaeli|Konya|Kütahya|Malatya|Manisa|Mardin|Mersin|" +
-    "Muğla|Muş|Nevşehir|Niğde|Ordu|Osmaniye|Rize|Sakarya|Samsun|Siirt|Sinop|Sivas|" +
-    "Şanlıurfa|Şırnak|Tekirdağ|Tokat|Trabzon|Tunceli|Uşak|Van|Yalova|Yozgat|Zonguldak"
-  ).split("|").sort((a,b) => a.localeCompare(b,"tr"));
+    "Adana|Adıyaman|Afyonkarahisar|Ağrı|" +
+    "Aksaray|Amasya|Ankara|Antalya|Artvin|" +
+    "Aydın|Balıkesir|Bartın|Batman|Bayburt|" +
+    "Bilecik|Bingöl|Bitlis|Bolu|Burdur|" +
+    "Bursa|Çanakkale|Çankırı|Çorum|Denizli|" +
+    "Diyarbakır|Düzce|Edirne|Elazığ|Erzincan|" +
+    "Erzurum|Eskişehir|Gaziantep|Giresun|" +
+    "Gümüşhane|Hakkari|Hatay|Iğdır|Isparta|" +
+    "İstanbul|İzmir|Kahramanmaraş|Karabük|" +
+    "Karaman|Kars|Kastamonu|Kayseri|Kırıkkale|" +
+    "Kırklareli|Kırşehir|Kilis|Kocaeli|Konya|" +
+    "Kütahya|Malatya|Manisa|Mardin|Mersin|" +
+    "Muğla|Muş|Nevşehir|Niğde|Ordu|Osmaniye|" +
+    "Rize|Sakarya|Samsun|Siirt|Sinop|Sivas|" +
+    "Şanlıurfa|Şırnak|Tekirdağ|Tokat|Trabzon|" +
+    "Tunceli|Uşak|Van|Yalova|Yozgat|Zonguldak"
+  )
+    .split("|")
+    .sort(
+      (a,b) =>
+        a.localeCompare(b,"tr")
+    );
 
-  const key = v => String(v).trim().toLocaleLowerCase("tr-TR").replace(/ı/g,"i").normalize("NFD").replace(/[\u0300-\u036f]/g,"");
-  const upper = v => String(v).trim().toLocaleUpperCase("tr-TR");
+  const summaryIds = {
+    yemek:"sumYemek",
+    ikram:"sumIkram",
+    yolOtopark:"sumYolOtopark",
+    yakit:"sumYakit",
+    konaklama:"sumKonaklama",
+    diger:"sumDiger",
+    belgesiz:"sumBelgesiz"
+  };
 
-  let busy = false;
   let endpoint = "";
+  let busy = false;
+  let pending = null;
 
-  const status = document.createElement("p");
-  status.id = "syncStatus";
-  status.setAttribute("role","status");
-  $("masrafForm").before(status);
+  const ram = new Map();
 
-  function message(text, error=false) {
-    status.textContent = text;
-    status.style.color = error ? "#ff9e9e" : "#a9c5ba";
-  }
+  const clean = value =>
+    String(
+      value == null
+        ? ""
+        : value
+    )
+      .trim()
+      .replace(/\s+/g," ");
 
-  try { endpoint = localStorage.getItem("masrafScriptUrl") || ""; } catch(_) {}
+  const searchKey = value =>
+    clean(value)
+      .toLocaleLowerCase("tr-TR")
+      .replace(/ı/g,"i")
+      .normalize("NFD")
+      .replace(
+        /[\u0300-\u036f]/g,
+        ""
+      );
 
-  // Şehir autocomplete
-  const ilInput = $("il");
-  const ilList = $("ilList");
-  ilList.style.cssText = "position:absolute;top:100%;left:0;right:0;z-index:55;max-height:220px;overflow:auto;padding:5px;margin:6px 0 0;list-style:none;background:#191c1d;border:1px solid #337a66;border-radius:14px;box-shadow:0 15px 35px #0008;display:none";
-
-  function renderCities() {
-    ilList.innerHTML = "";
-    const q = key(ilInput.value);
-    const matches = cities.filter(c => key(c).includes(q)).slice(0,20);
-    if (!matches.length) { ilList.style.display = "none"; return; }
-    matches.forEach(c => {
-      const li = document.createElement("li");
-      li.style.padding = "0";
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.textContent = c.toLocaleUpperCase("tr-TR");
-      btn.style.cssText = "display:block;width:100%;padding:13px;text-align:left;border:0;border-radius:9px;background:transparent;color:#eee;font:inherit;font-size:14px;cursor:pointer";
-      btn.addEventListener("mousedown", e => e.preventDefault());
-      btn.addEventListener("click", () => {
-        ilInput.value = c.toLocaleUpperCase("tr-TR");
-        ilList.style.display = "none";
-        try { localStorage.setItem("masrafLastIl", ilInput.value); } catch(_) {}
-      });
-      li.appendChild(btn);
-      ilList.appendChild(li);
-    });
-    ilList.style.display = "block";
-  }
-
-  ilInput.addEventListener("input", renderCities);
-  ilInput.addEventListener("focus", renderCities);
-  document.addEventListener("pointerdown", e => {
-    if (e.target !== ilInput && !ilList.contains(e.target)) ilList.style.display = "none";
-  });
-
-  // Son il'i geri yükle
-  try {
-    const lastIl = localStorage.getItem("masrafLastIl");
-    if (lastIl) ilInput.value = lastIl;
-  } catch(_) {}
-
-  // Bugünün tarihini set et
-  function setToday() {
-    const t = new Date();
-    $("tarih").value = t.getFullYear()+"-"+String(t.getMonth()+1).padStart(2,"0")+"-"+String(t.getDate()).padStart(2,"0");
-  }
-  setToday();
-
-  function lockForm() {
-    ["tarih","il","tur","tutar","aciklama"].forEach(id => { $(id).disabled = busy; });
-    $("submitBtn").disabled = busy;
-    $("btnText").textContent = busy ? "Kaydediliyor…" : "Masrafı Kaydet";
-    $("btnSpinner").classList.toggle("hidden", !busy);
-    $("btnIcon").classList.toggle("hidden", busy);
-  }
-
-  async function api(action, params={}, url=endpoint, timeoutMs=30000) {
-    if (!/^https:\/\/script\.google\.com\/macros\/s\/[^/]+\/exec$/.test(url)) {
-      throw new Error("Ayarlar'a geçerli Apps Script bağlantısını girin.");
-    }
-    const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), timeoutMs);
+  function read(
+    name,
+    fallback
+  ) {
     try {
-      const query = new URLSearchParams(Object.assign({ action, t: String(Date.now()) }, params));
-      const response = await fetch(url+"?"+query, { signal: controller.signal, redirect:"follow", cache:"no-store" });
-      const raw = await response.text();
+      const raw =
+        localStorage.getItem(name);
+
+      return raw === null
+        ? fallback
+        : JSON.parse(raw);
+    } catch (_) {
+      return ram.has(name)
+        ? ram.get(name)
+        : fallback;
+    }
+  }
+
+  function save(
+    name,
+    value
+  ) {
+    ram.set(name,value);
+
+    try {
+      localStorage.setItem(
+        name,
+        JSON.stringify(value)
+      );
+    } catch (_) {
+      message(
+        "Cihaz hafızası kullanılamıyor. " +
+        "Bu oturum çalışmaya devam eder.",
+        true
+      );
+    }
+  }
+
+  try {
+    endpoint =
+      localStorage.getItem(
+        URL_KEY
+      ) || "";
+  } catch (_) {}
+
+  const pendingKey = () =>
+    "expense1:" +
+    endpoint +
+    ":pending";
+
+  function message(
+    text,
+    error = false
+  ) {
+    $("syncStatus").textContent =
+      text;
+
+    $("syncStatus").style.color =
+      error
+        ? "#ff9e9e"
+        : "#a9c5ba";
+
+    $("syncStatus").style.borderColor =
+      error
+        ? "rgba(255,158,158,.25)"
+        : "rgba(255,255,255,.06)";
+  }
+
+  function makeId() {
+    if (
+      window.crypto &&
+      typeof window.crypto
+        .randomUUID === "function"
+    ) {
+      return window.crypto
+        .randomUUID();
+    }
+
+    return (
+      "expense-" +
+      Date.now() +
+      "-" +
+      Math.random()
+        .toString(36)
+        .slice(2,12)
+    );
+  }
+
+  function setToday() {
+    const today =
+      new Date();
+
+    $("tarih").value =
+      today.getFullYear() +
+      "-" +
+      String(
+        today.getMonth() + 1
+      ).padStart(2,"0") +
+      "-" +
+      String(
+        today.getDate()
+      ).padStart(2,"0");
+  }
+
+  function formattedDate() {
+    const parts =
+      $("tarih")
+        .value
+        .split("-");
+
+    if (
+      parts.length !== 3
+    ) {
+      throw new Error(
+        "Tarih seçin."
+      );
+    }
+
+    return (
+      parts[2] +
+      "." +
+      parts[1] +
+      "." +
+      parts[0]
+    );
+  }
+
+  function parseAmount(value) {
+    let raw = clean(value)
+      .replace(/\s+/g,"")
+      .replace(/TL/gi,"");
+
+    if (raw.includes(",")) {
+      raw = raw
+        .replace(/\./g,"")
+        .replace(",", ".");
+    } else if (
+      /^\d{1,3}(\.\d{3})+$/
+        .test(raw)
+    ) {
+      raw =
+        raw.replace(/\./g,"");
+    }
+
+    const amount =
+      Number(raw);
+
+    return Number.isFinite(amount)
+      ? amount
+      : NaN;
+  }
+
+  function formatTL(value) {
+    return (
+      new Intl.NumberFormat(
+        "tr-TR",
+        {
+          minimumFractionDigits:2,
+          maximumFractionDigits:2
+        }
+      ).format(
+        Number(value) || 0
+      ) +
+      " TL"
+    );
+  }
+
+  function renderSummary(
+    summary
+  ) {
+    const categories =
+      summary &&
+      summary.categories
+        ? summary.categories
+        : {};
+
+    $("grandTotal").textContent =
+      formatTL(
+        summary &&
+        summary.total
+      );
+
+    Object.keys(
+      summaryIds
+    ).forEach(key => {
+      $(
+        summaryIds[key]
+      ).textContent =
+        formatTL(
+          categories[key]
+        );
+    });
+  }
+
+  function validUrl(url) {
+    return (
+      /^https:\/\/script\.google\.com\/macros\/s\/[^/]+\/exec$/
+        .test(url)
+    );
+  }
+
+  async function api(
+    action,
+    params = {},
+    url = endpoint,
+    timeoutMs = 20000
+  ) {
+    if (!validUrl(url)) {
+      throw new Error(
+        "Ayarlar'a geçerli Apps Script /exec bağlantısını girin."
+      );
+    }
+
+    const controller =
+      new AbortController();
+
+    const timer =
+      setTimeout(
+        () => controller.abort(),
+        timeoutMs
+      );
+
+    try {
+      const query =
+        new URLSearchParams(
+          Object.assign(
+            {
+              action:action,
+              t:String(
+                Date.now()
+              )
+            },
+            params
+          )
+        );
+
+      const response =
+        await fetch(
+          url + "?" + query,
+          {
+            signal:
+              controller.signal,
+            redirect:"follow",
+            cache:"no-store"
+          }
+        );
+
+      const raw =
+        await response.text();
+
       let data;
-      try { data = JSON.parse(raw); } catch(_) { throw new Error("Sunucu JSON döndürmedi."); }
-      if (!response.ok || !data || data.result === "error") {
-        throw new Error(data && data.error ? data.error : "Sunucu hatası.");
+
+      try {
+        data =
+          JSON.parse(raw);
+      } catch (_) {
+        throw new Error(
+          "Sunucu JSON döndürmedi. " +
+          "Apps Script dağıtımını ve " +
+          "/exec adresini kontrol edin."
+        );
       }
+
+      if (
+        !response.ok ||
+        !data ||
+        data.result === "error"
+      ) {
+        const error =
+          new Error(
+            data &&
+            data.error
+              ? data.error
+              : "Sunucu hatası."
+          );
+
+        error.terminalReceipt =
+          action ===
+            "getReceipt" &&
+          data &&
+          data.result ===
+            "error";
+
+        throw error;
+      }
+
       return data;
-    } catch(error) {
-      if (error.name === "AbortError") throw new Error("Zaman aşımı.");
-      if (error instanceof TypeError) throw new Error("Sunucuya erişilemiyor.");
+    } catch (error) {
+      if (
+        error.name ===
+        "AbortError"
+      ) {
+        throw new Error(
+          "Sunucu zaman aşımı. " +
+          "Bağlantıyı kontrol edin."
+        );
+      }
+
+      if (
+        error instanceof
+        TypeError
+      ) {
+        throw new Error(
+          "Sunucuya erişilemiyor. " +
+          "İnternet veya Apps Script " +
+          "bağlantısını kontrol edin."
+        );
+      }
+
       throw error;
     } finally {
       clearTimeout(timer);
     }
   }
 
-  function formatTL(num) {
-    return num.toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " TL";
+  function checkVersion(data) {
+    if (
+      data.version !==
+      API_VERSION
+    ) {
+      throw new Error(
+        "Apps Script eski veya farklı bir sürümde. " +
+        "Yeni masraf kodunu dağıtın."
+      );
+    }
   }
 
-  async function loadSummary() {
-    if (!endpoint) {
-      $("summaryCard").innerHTML = `<div class="summary-row"><span class="summary-label" style="color:#f4be7c">Ayarlar'dan bağlantı ekleyin.</span></div>`;
+  async function refreshSummary() {
+    if (
+      !endpoint ||
+      busy ||
+      pending
+    ) {
       return;
     }
-    $("summaryCard").innerHTML = `<div class="summary-row"><span class="summary-label">Yükleniyor…</span></div>`;
+
     try {
-      const data = await api("getSummary", {}, endpoint, 20000);
-      const turleri = [
-        "YEMEK (KENDİSİ)","İKRAM (MÜŞTERİSİ)","YOL-OTOPARK",
-        "YAKIT","KONAKLAMA","DİĞER","BELGESİZ HARCAMA"
-      ];
-      const labels = {
-        "YEMEK (KENDİSİ)": "Yemek (Kendisi)",
-        "İKRAM (MÜŞTERİSİ)": "İkram (Müşterisi)",
-        "YOL-OTOPARK": "Yol - Otopark",
-        "YAKIT": "Yakıt",
-        "KONAKLAMA": "Konaklama",
-        "DİĞER": "Diğer",
-        "BELGESİZ HARCAMA": "Belgesiz Harcama"
-      };
-      let html = "";
-      turleri.forEach(t => {
-        const val = data.totals[t] || 0;
-        const cls = val > 0 ? "nonzero" : "";
-        html += `<div class="summary-row">
-          <span class="summary-label">${labels[t]}</span>
-          <span class="summary-val ${cls}">${val > 0 ? formatTL(val) : "—"}</span>
-        </div>`;
-      });
-      html += `<div class="summary-total">
-        <span class="summary-label">GENEL TOPLAM</span>
-        <span class="summary-val nonzero">${formatTL(data.grandTotal || 0)}</span>
-      </div>`;
-      $("summaryCard").innerHTML = html;
-    } catch(error) {
-      $("summaryCard").innerHTML = `<div class="summary-row"><span class="summary-label" style="color:#ff9e9e">${error.message}</span></div>`;
+      const data =
+        await api(
+          "getSummary",
+          {},
+          endpoint,
+          20000
+        );
+
+      checkVersion(data);
+      renderSummary(data);
+
+      message(
+        "Masraf formu hazır. " +
+        "Sıradaki kayıt no: " +
+        data.nextNo
+      );
+    } catch (error) {
+      message(
+        error.message,
+        true
+      );
     }
   }
 
-  $("refreshBtn").addEventListener("click", loadSummary);
+  function lockForm() {
+    fields.forEach(id => {
+      $(id).disabled =
+        busy ||
+        Boolean(pending);
+    });
+
+    $("submitBtn").disabled =
+      busy;
+
+    $("saveSettingsBtn").disabled =
+      busy;
+
+    $("btnText").textContent =
+      busy
+        ? "Kontrol ediliyor…"
+        : pending
+          ? "Kaydı kontrol et / yeniden dene"
+          : "Masrafı Kaydet";
+
+    $("btnIcon")
+      .classList
+      .toggle(
+        "hidden",
+        busy
+      );
+
+    $("btnSpinner")
+      .classList
+      .toggle(
+        "hidden",
+        !busy
+      );
+
+    if (
+      busy ||
+      pending
+    ) {
+      closeCityList();
+    }
+  }
+
+  function closeCityList() {
+    $("sehirList")
+      .classList
+      .add("hidden");
+  }
+
+  function renderCities() {
+    const list =
+      $("sehirList");
+
+    const query =
+      searchKey(
+        $("sehir").value
+      );
+
+    list.replaceChildren();
+
+    if (
+      busy ||
+      pending
+    ) {
+      closeCityList();
+      return;
+    }
+
+    const matches =
+      cities
+        .filter(
+          city =>
+            searchKey(city)
+              .includes(query)
+        )
+        .slice(0,30);
+
+    matches.forEach(city => {
+      const item =
+        document.createElement(
+          "li"
+        );
+
+      const button =
+        document.createElement(
+          "button"
+        );
+
+      button.type = "button";
+      button.className =
+        "city-choice";
+      button.textContent =
+        city;
+
+      button.addEventListener(
+        "mousedown",
+        event =>
+          event.preventDefault()
+      );
+
+      button.addEventListener(
+        "click",
+        () => {
+          $("sehir").value =
+            city;
+
+          save(
+            CITY_KEY,
+            city
+          );
+
+          closeCityList();
+          $("sehir").focus();
+        }
+      );
+
+      item.appendChild(button);
+      list.appendChild(item);
+    });
+
+    list.classList.toggle(
+      "hidden",
+      !matches.length
+    );
+  }
+
+  function restorePending() {
+    pending =
+      read(
+        pendingKey(),
+        null
+      );
+
+    if (
+      !pending ||
+      !pending.requestId ||
+      !pending.tarih
+    ) {
+      pending = null;
+    }
+
+    if (pending) {
+      $("tarih").value =
+        pending.tarih
+          .split(".")
+          .reverse()
+          .join("-");
+
+      $("sehir").value =
+        pending.sehir || "";
+
+      $("masrafTuru").value =
+        pending.masrafTuru || "";
+
+      $("tutar").value =
+        String(
+          pending.tutar || ""
+        ).replace(".",",");
+
+      $("aciklama").value =
+        pending.aciklama || "";
+
+      message(
+        "Önceki masraf kaydının sonucu belirsiz. " +
+        "Aynı düğmeyle kontrol edin.",
+        true
+      );
+    }
+
+    lockForm();
+  }
+
+  async function receipt() {
+    return api(
+      "getReceipt",
+      {
+        requestId:
+          pending.requestId
+      },
+      endpoint,
+      8000
+    );
+  }
+
+  function finish(data) {
+    if (
+      data.result !==
+        "success" ||
+      !data.sheet ||
+      !Number.isInteger(
+        data.row
+      )
+    ) {
+      throw new Error(
+        "Geçersiz kayıt doğrulaması."
+      );
+    }
+
+    if (data.summary) {
+      renderSummary(
+        data.summary
+      );
+    }
+
+    save(
+      CITY_KEY,
+      pending.sehir
+    );
+
+    pending = null;
+
+    save(
+      pendingKey(),
+      null
+    );
+
+    $("masrafTuru").value = "";
+    $("tutar").value = "";
+    $("aciklama").value = "";
+
+    message(
+      "Doğrulandı: " +
+      data.expenseNo +
+      ". masraf · " +
+      data.expenseType +
+      " · " +
+      formatTL(data.amount)
+    );
+  }
 
   async function submit() {
     if (busy) return;
 
-    if (!$("tarih").value) { message("Tarih zorunludur.", true); $("tarih").focus(); return; }
-    if (!$("il").value.trim()) { message("İl zorunludur.", true); $("il").focus(); return; }
-    if (!$("tur").value) { message("Masraf türü seçiniz.", true); $("tur").focus(); return; }
-    if (!$("tutar").value || parseFloat($("tutar").value) <= 0) { message("Geçerli bir tutar girin.", true); $("tutar").focus(); return; }
+    if (!pending) {
+      for (
+        const id of
+        Object.keys(required)
+      ) {
+        if (
+          !clean($(id).value)
+        ) {
+          message(
+            required[id] +
+            " zorunludur.",
+            true
+          );
+
+          $(id).focus();
+          return;
+        }
+      }
+
+      const amount =
+        parseAmount(
+          $("tutar").value
+        );
+
+      if (
+        !Number.isFinite(amount) ||
+        amount <= 0
+      ) {
+        message(
+          "Tutar sıfırdan büyük olmalıdır.",
+          true
+        );
+
+        $("tutar").focus();
+        return;
+      }
+
+      if (
+        !$("expenseForm")
+          .reportValidity()
+      ) {
+        return;
+      }
+    }
 
     busy = true;
     lockForm();
 
     try {
-      const id = crypto.randomUUID();
-      const params = {
-        requestId: id,
-        tarih: $("tarih").value.split("-").reverse().join("."),
-        il: upper($("il").value),
-        tur: $("tur").value,
-        tutar: parseFloat($("tutar").value).toFixed(2),
-        aciklama: $("aciklama").value.trim()
-      };
+      if (!pending) {
+        pending = {
+          requestId:makeId(),
+          tarih:formattedDate(),
+          sehir:clean(
+            $("sehir").value
+          ),
+          masrafTuru:
+            $("masrafTuru").value,
+          tutar:parseAmount(
+            $("tutar").value
+          ),
+          aciklama:clean(
+            $("aciklama").value
+          )
+        };
 
-      message("Kaydediliyor…");
-      const data = await api("saveMasraf", params, endpoint, 30000);
+        save(
+          pendingKey(),
+          pending
+        );
+      } else {
+        message(
+          "Korunan masraf kaydı kontrol ediliyor…"
+        );
 
-      $("tutar").value = "";
-      $("aciklama").value = "";
-      $("tur").value = "";
+        try {
+          const previous =
+            await receipt();
 
-      message("✓ Kaydedildi → Satır " + data.row);
-      showFlash();
-      await loadSummary();
-      setTimeout(() => $("tur").focus(), 100);
+          if (
+            previous.result ===
+            "success"
+          ) {
+            finish(previous);
+            return;
+          }
+        } catch (error) {
+          if (
+            error.terminalReceipt
+          ) {
+            throw error;
+          }
+        }
+      }
 
-    } catch(error) {
-      message(error.message, true);
+      message(
+        "Google Sheets'e gönderiliyor…"
+      );
+
+      const controller =
+        new AbortController();
+
+      const timer =
+        setTimeout(
+          () =>
+            controller.abort(),
+          15000
+        );
+
+      fetch(
+        endpoint,
+        {
+          method:"POST",
+          mode:"no-cors",
+          headers:{
+            "Content-Type":
+              "text/plain;charset=utf-8"
+          },
+          body:
+            JSON.stringify(
+              pending
+            ),
+          signal:
+            controller.signal
+        }
+      )
+        .catch(() => {})
+        .finally(
+          () =>
+            clearTimeout(timer)
+        );
+
+      let lastError = null;
+
+      for (
+        let index = 0;
+        index < 12;
+        index++
+      ) {
+        await new Promise(
+          resolve =>
+            setTimeout(
+              resolve,
+              index < 4
+                ? 600
+                : 1200
+            )
+        );
+
+        try {
+          const result =
+            await receipt();
+
+          if (
+            result.result ===
+            "success"
+          ) {
+            finish(result);
+            return;
+          }
+
+          lastError = null;
+        } catch (error) {
+          if (
+            error.terminalReceipt
+          ) {
+            throw error;
+          }
+
+          lastError = error;
+        }
+      }
+
+      message(
+        (
+          lastError
+            ? lastError.message +
+              " "
+            : ""
+        ) +
+        "Kayıt henüz doğrulanamadı. " +
+        "Form korundu; aynı düğmeyle tekrar kontrol edin.",
+        true
+      );
+    } catch (error) {
+      if (
+        pending &&
+        error.terminalReceipt
+      ) {
+        pending = null;
+
+        save(
+          pendingKey(),
+          null
+        );
+      }
+
+      message(
+        error.message +
+        (
+          pending
+            ? " Form korundu; aynı düğmeyle kontrol edin."
+            : " Kayıt yapılmadı; alanlar korunuyor."
+        ),
+        true
+      );
     } finally {
       busy = false;
       lockForm();
     }
   }
 
-  $("submitBtn").addEventListener("click", submit);
-  $("masrafForm").addEventListener("submit", e => { e.preventDefault(); submit(); });
+  $("expenseForm")
+    .addEventListener(
+      "submit",
+      event => {
+        event.preventDefault();
+        submit();
+      }
+    );
 
-  $("openSettingsBtn").addEventListener("click", () => {
-    $("scriptUrlInput").value = endpoint;
-    $("settingsModal").classList.remove("hidden");
-    $("settingsModal").classList.add("flex");
-  });
+  $("sehir")
+    .addEventListener(
+      "input",
+      () => {
+        save(
+          CITY_KEY,
+          $("sehir").value
+        );
 
-  $("closeSettingsBtn").addEventListener("click", () => {
-    $("settingsModal").classList.add("hidden");
-    $("settingsModal").classList.remove("flex");
-  });
+        renderCities();
+      }
+    );
 
-  $("saveSettingsBtn").addEventListener("click", async () => {
-    if (busy) return;
-    const url = $("scriptUrlInput").value.trim();
-    $("saveSettingsBtn").disabled = true;
-    try {
-      const data = await api("ping", {}, url, 30000);
-      if (data.version !== "masraf-v1") throw new Error("Yanlış Apps Script bağlandı.");
-      endpoint = url;
-      try { localStorage.setItem("masrafScriptUrl", url); } catch(_) {}
-      $("closeSettingsBtn").click();
-      message("Bağlantı doğrulandı: " + data.spreadsheet);
-      await loadSummary();
-    } catch(error) {
-      alert(error.message);
-      message(error.message, true);
-    } finally {
-      $("saveSettingsBtn").disabled = false;
+  $("sehir")
+    .addEventListener(
+      "focus",
+      renderCities
+    );
+
+  document.addEventListener(
+    "pointerdown",
+    event => {
+      if (
+        event.target !==
+          $("sehir") &&
+        !$("sehirList")
+          .contains(
+            event.target
+          )
+      ) {
+        closeCityList();
+      }
     }
-  });
+  );
 
-  loadSummary();
+  $("tutar")
+    .addEventListener(
+      "input",
+      () => {
+        $("tutar").value =
+          $("tutar")
+            .value
+            .replace(
+              /[^0-9.,]/g,
+              ""
+            );
+      }
+    );
+
+  $("openSettingsBtn")
+    .addEventListener(
+      "click",
+      () => {
+        $("scriptUrlInput").value =
+          endpoint;
+
+        $("settingsModal")
+          .classList
+          .remove("hidden");
+
+        $("settingsModal")
+          .classList
+          .add("flex");
+      }
+    );
+
+  $("closeSettingsBtn")
+    .addEventListener(
+      "click",
+      () => {
+        $("settingsModal")
+          .classList
+          .add("hidden");
+
+        $("settingsModal")
+          .classList
+          .remove("flex");
+      }
+    );
+
+  $("saveSettingsBtn")
+    .addEventListener(
+      "click",
+      async () => {
+        if (busy) return;
+
+        const url =
+          $("scriptUrlInput")
+            .value
+            .trim();
+
+        busy = true;
+        lockForm();
+
+        try {
+          const data =
+            await api(
+              "ping",
+              {},
+              url,
+              30000
+            );
+
+          checkVersion(data);
+
+          endpoint = url;
+
+          try {
+            localStorage.setItem(
+              URL_KEY,
+              url
+            );
+          } catch (_) {
+            message(
+              "Bağlantı yalnızca bu oturumda saklanabildi.",
+              true
+            );
+          }
+
+          restorePending();
+
+          $("closeSettingsBtn")
+            .click();
+
+          if (!pending) {
+            renderSummary({
+              total:0,
+              categories:{}
+            });
+
+            const summary =
+              await api(
+                "getSummary",
+                {},
+                endpoint,
+                20000
+              );
+
+            checkVersion(
+              summary
+            );
+
+            renderSummary(
+              summary
+            );
+
+            message(
+              "Bağlantı doğrulandı: " +
+              data.spreadsheet +
+              " · Sıradaki kayıt no: " +
+              summary.nextNo
+            );
+          }
+        } catch (error) {
+          alert(
+            error.message
+          );
+
+          message(
+            error.message,
+            true
+          );
+        } finally {
+          busy = false;
+          lockForm();
+        }
+      }
+    );
+
+  window.addEventListener(
+    "online",
+    refreshSummary
+  );
+
+  setToday();
+
+  $("sehir").value =
+    read(
+      CITY_KEY,
+      ""
+    ) || "";
+
+  restorePending();
+  refreshSummary();
 })();
 </script>
 </body>
